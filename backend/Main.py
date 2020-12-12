@@ -9,7 +9,7 @@ df = pd.DataFrame(columns=['Name', 'Drug interactions'])
 
 @app.route('/')
 def index():
-    return '<h1>Index Page</h1>'
+    return 'Default Page of backend'
 
 
 @app.route("/druginteractionshtml", methods=['GET'])
@@ -74,3 +74,35 @@ def test():
     print("collected")
 
 app.run()
+
+@app.route("/get_drugs", methods=['GET'])
+def get_drugs():
+    # Hier alle drugs binnenhalen
+
+@app.route("/get_drug", methods=['GET'])
+def get_drug(drug):
+    # Hier de info van de gevraagde drug meepakken
+
+@app.route("/add_drug", methods=['POST'])
+def add_drug(drug, patient_id):
+    # Hier post call om drug toe te voegen aan patient
+
+@app.route("/remove_drug", methods=['POST'])
+def remove_drug(drug, patient_id):
+    # Hier post om drug te verwijderen van patient
+
+@app.route("/add_patient", methods=['POST'])
+def add_patient():
+    # Hier patient toevoegen
+
+@app.route("/remove_patient", methods=['POST'])
+def remove_patient(patient_id):
+    # Hier patient verwijderen
+
+@app.route("/get_interactions", methods=['GET'])
+def get_interactions(drugs):
+    # Hier kijken voor interacties in de lijst
+
+@app.route("/post_search", methods=['POST'])
+def post_search(searchdata):
+    # Hier search query returnen
