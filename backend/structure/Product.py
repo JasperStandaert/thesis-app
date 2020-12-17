@@ -1,6 +1,6 @@
 class Product:
 
     name = ""
-    dosage-form = ""
+    dosageForm = ""
     strength = ""
     route = ""
