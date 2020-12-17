@@ -7,3 +7,11 @@ class Patient:
     condition = ""
     status = ""
     medication = []
+
+    def __init__(self, n, s, a, c, stat, m):
+        self.name = n
+        self.surname = s
+        self.age = a
+        self.condition = c
+        self.status = stat
+        self.medication = m

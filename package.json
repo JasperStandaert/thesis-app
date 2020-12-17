@@ -1,0 +1,23 @@
+{
+  "name": "thesis-app",
+  "version": "1.0.0",
+  "description": "Thesis package",
+  "main": "index.js",
+  "dependencies": {
+    "pandas": "0.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/JasperStandaert/thesis-app.git"
+  },
+  "author": "Jasper Standaert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JasperStandaert/thesis-app/issues"
+  },
+  "homepage": "https://github.com/JasperStandaert/thesis-app#readme"
+}
