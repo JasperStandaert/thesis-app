@@ -73,8 +73,6 @@ def test():
     get_info()
     print("collected")
 
-app.run()
-
 @app.route("/get_drugs", methods=['GET'])
 def get_drugs():
     # Hier alle drugs binnenhalen
@@ -106,3 +104,5 @@ def get_interactions(drugs):
 @app.route("/post_search", methods=['POST'])
 def post_search(searchdata):
     # Hier search query returnen
+
+    app.run()
