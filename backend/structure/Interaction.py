@@ -2,10 +2,11 @@ class Interaction:
 
 # Klasse van interactions
 # Bevate de drug waar het bij hoort, en een omschrijving
-
-    name = ""
+    drugA = ""
+    drugB = ""
     description = ""
 
-    def __init__(self, n, d):
-        self.name = n
+    def __init__(self, a, b, d):
+        self.drugA = a
+        self.drugB = b
         self.description = d
