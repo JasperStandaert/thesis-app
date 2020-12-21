@@ -3,15 +3,13 @@ class Patient:
     # Bevat patient info en medicatie (druglijst)
     name = ""
     surname = ""
-    age = ""
+    age = 0
     condition = ""
-    status = ""
     medication = []
 
-    def __init__(self, n, s, a, c, stat, m):
+    def __init__(self, n, s, a, c, m):
         self.name = n
         self.surname = s
         self.age = a
         self.condition = c
-        self.status = stat
         self.medication = m
