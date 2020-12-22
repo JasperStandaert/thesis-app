@@ -61,13 +61,9 @@ def getPatientInteractions(patient_id, interactions):
                 
         response = make_response(json.dumps(data))
         return response
-@app.route("/search")
+@app.route("/search/<drugName>")
 def searchDrug(drugName):
-    drug = []
-    if(drugName in df):
-        drug.append(df.loc[drugName])
-
-    response = make_response(json.dumps(drug))
+    response = make_response(df.loc[df['Name'] == drugName].to_json(orient='records'))
     return response
 
 @app.route("/patients")
