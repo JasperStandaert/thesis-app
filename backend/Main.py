@@ -11,15 +11,10 @@ from structure.Product import Product
 
 app = Flask(__name__)
 
-df = pd.DataFrame(columns=['Name', 'Description', 'Indication', 'Interactions', 'Products'])
-
-drugs1 = []
-drugs2 = []
-drugs3 = []
-patient1 = Patient("Jansenss", "Marc", 48, "Pancreatitis", drugs1)
-patient2 = Patient("Kimpen", "Robbe", 23, "Luiheid", drugs2)
-patient3 = Patient("Jacobs", "An", 32, "Diabetes", drugs3)
-
+df = pd.DataFrame(columns=['Name', 'Description', 'Indication', 'Toxicity', 'Interactions', 'Products'])
+patient1 = Patient("Jansenss", "Marc", 48, "Pancreatitis", [])
+patient2 = Patient("Kimpen", "Robbe", 23, "Luiheid", [])
+patient3 = Patient("Jacobs", "An", 32, "Diabetes", [])
 patients = [patient1, patient2, patient3]
 
 @app.route('/')
@@ -39,18 +34,22 @@ def getDrugInfo():
    args = request.args
    print(args)
 
-@app.route("/Patient/<int:patient_id>")
+@app.route("/Patient<int:patient_id>")
 def getPatientDrugs(patient_id):
     if(patients[patient_id]):
         data = []
-        for drug in patients[patient_id].medication:
-            data.append(drug.__dict__)
-
+        for attr, value in patients[patient_id].__dict__.items():
+            if attr == patients[patient_id].medication:
+                for attr, value in attr.__dict__.items():
+                    data.append(("Drug: ", attr, value))
+            else:
+                data.append((attr, value))
+        
         response = make_response(json.dumps(data))
         return response
 
-@app.route("/Patient/Interactions/<int:patient_id>")
-def getPatientInteractions(interactions):
+@app.route("/Patient<int:patient_id>/Interactions/")
+def getPatientInteractions(patient_id, interactions):
     data = []
     for interaction in interactions:
         i = {
@@ -71,6 +70,9 @@ def searchDrug(drugName):
     response = make_response(json.dumps(drug))
     return response
 
+@app.route("/patients")
+
+
 
 
 def get_info():
@@ -88,6 +90,8 @@ def get_info():
         h.append(desc)
         indication = drug.find('{http://www.drugbank.ca}indication').text
         h.append(indication)
+        toxicity = drug.find('{http://www.drugbank.ca}toxicity').text
+        h.append(toxicity)
 
         # Retrieve interactions
         interactions = drug.find('{http://www.drugbank.ca}drug-interactions')
@@ -127,7 +131,6 @@ def get_info():
         else:
             x.append(0)
         h.append(x)
-
         df.loc[pos] = h
         h = []
         pos += 1
@@ -135,6 +138,10 @@ def get_info():
 @app.before_first_request
 def init():
     get_info()
-    print("collected")
+    drugs1 = [df.iloc[1]]
+    drugs2 = [df.iloc[3]]
+    drugs3 = [df.iloc[115], df.iloc[18]]
+    
+    print("Data collected")
 
 app.run()
