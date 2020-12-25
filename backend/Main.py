@@ -131,6 +131,15 @@ def get_info():
         h = []
         pos += 1
 
+def check_interactions(patient_id):
+    interactions = []
+    for drug in patients[patient_id].medication:
+        for interaction in drug.interactions:
+            if interaction.drugB in patients[patient_id].medication:
+                interactions.append(interaction)
+    
+    return interactions
+
 @app.before_first_request
 def init():
     get_info()
