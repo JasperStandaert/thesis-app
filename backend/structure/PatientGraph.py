@@ -4,7 +4,7 @@ class PatientGraph:
     graph = nx.Graph()
 
 
-    def __init__(nodes):
+    def __init__(self, nodes):
         self.graph = nx.Graph()
         graph.add_nodes_from(nodes)
         
