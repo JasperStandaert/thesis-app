@@ -4,7 +4,8 @@
   "description": "Thesis package",
   "main": "index.js",
   "dependencies": {
-    "pandas": "0.0.3"
+    "pandas": "0.0.3",
+    "vue-router": "^3.4.9"
   },
   "devDependencies": {},
   "scripts": {
