@@ -1,5 +1,3 @@
-
-
 <template>
     <div id="main">
         <p>Welcome</p>
