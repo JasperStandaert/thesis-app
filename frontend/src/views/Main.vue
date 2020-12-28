@@ -1,11 +1,14 @@
+
+
 <template>
     <div id="main">
         <p>Welcome</p>
-    </div
+    </div>
 </template>
 
 <script>
-export default {
+import Vue from 'vue'
+export default{
     
 }
 </script>
