@@ -5,11 +5,13 @@
     
 </template>
 <script>
-export default {
+import router from "../router"
+import { Component, Vue } from 'vue-property-decorator'
+export default class Search extends Vue{
 
     search() {
         router.push('/search');
-    },
+    }
 };
 </script>
 <style scoped>

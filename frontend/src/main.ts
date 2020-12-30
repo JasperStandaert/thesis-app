@@ -3,9 +3,12 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import VueCytoscape from 'vue-cytoscape'
-Vue.config.productionTip = false;
 
 Vue.use(VueCytoscape)
+
+Vue.config.productionTip = false;
+
+
 
 new Vue({
   router,

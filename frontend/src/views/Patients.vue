@@ -14,18 +14,19 @@
 </template>
 
 <script lang="ts">
-// import Sidebar from '@/components/Sidebar.vue';
+import Sidebar from "../components/Sidebar.vue";
 import { Component, Vue } from 'vue-property-decorator';
-import router from "../router"
+import router from "../router";
 
 @Component({
-  components: {
-  },
+    components: {
+        Sidebar,
+    }
 })
 export default class Patients extends Vue {
     
     patient(){
-        router.push("/patient")
+        router.push("/patient");
     }
 }
 </script>
