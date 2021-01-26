@@ -1,18 +1,21 @@
 <template>
     <div id="patient">
-        <p>Patient profile page</p>
-        <div>
-            <patient-graph/>
-        </div>
+        <return/>
+        <medication-card/>
+        <interaction-card/>
     </div>
 </template>
 <script lang="ts">
-import PatientGraph from "../components/PatientGraph.vue";
+import MedicationCard from "../components/MedicationCard.vue"
+import InteractionCard from "../components/InteractionCard.vue"
+import Return from "../components/Return.vue"
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
     components: {
-        PatientGraph,
+        MedicationCard,
+        InteractionCard,
+        Return,
     }
 })
 export default class Patient extends Vue{

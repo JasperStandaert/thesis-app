@@ -9,8 +9,8 @@ Vue.use(VueRouter);
 const routes: RouteConfig[] = [
   {
     path: '/',
-    name: 'Patients',
-    component: Patients,
+    name: '/main',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Patients.vue')
   },
   {
     path: '/search',

@@ -13,7 +13,14 @@
 
 <script src="cytoscape.min.js"></script>
 <script>
+
 import { Component, Vue } from 'vue-property-decorator'
+@Component({
+    components:{
+
+    },
+    props: ['drugs']
+})
 
 export default class PatientGraph extends Vue{
     config = {
@@ -35,8 +42,10 @@ export default class PatientGraph extends Vue{
         }
         ],
         layout: {
-            name: 'grid',
-            rows: 1
+            name: 'cose',
+            rows: 1,
+            gravity: 1,
+            idealEdgeLength: function( edge ){ return 32; },
         }
     }
     elements = [
@@ -45,6 +54,9 @@ export default class PatientGraph extends Vue{
         },
         {
             data: {id: 'b'}
+        },
+        {
+            data: { id: 'ab', source: 'a', target: 'b' }
         }
     ]
 };

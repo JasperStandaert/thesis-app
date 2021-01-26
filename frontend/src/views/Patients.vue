@@ -1,7 +1,6 @@
 <template>
     <div id="patientOverview">
         <p>Patients overview</p>
-        <sidebar/>
         <dl>
             <dt v-on:click="patient()">Patient 1</dt>
             <dd>Naam Leeftijd</dd>
@@ -14,18 +13,16 @@
 </template>
 
 <script lang="ts">
-import Sidebar from "../components/Sidebar.vue";
 import { Component, Vue } from 'vue-property-decorator';
-import router from "../router";
+import router from '../router';
 
 @Component({
     components: {
-        Sidebar,
-    }
+    },
 })
 export default class Patients extends Vue {
-    
-    patient(){
+
+    patient() {
         router.push("/patient");
     }
 }
