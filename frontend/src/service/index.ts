@@ -1,10 +1,21 @@
-import axios from 'axios'
+import axios from 'axios';
 
-export default class HttpService{
+export default class HttpService {
 
-    basepath = '127.0.0.1:5000'
+    public basepath = 'http://127.0.0.1:5000';
 
-    getPatient(patientId: string) {
-        return axios.get(this.basepath + '/getpatient/' + patientId);
+    public getPatients() {
+        return axios.get(this.basepath + '/get_all_patients', {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+    }
+    public getMedication() {
+        return axios.get(this.basepath + '/get_all_drugs', {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
     }
 }

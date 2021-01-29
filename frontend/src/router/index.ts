@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import Patients from '../views/Patients.vue';
 import Patient from '../views/Patient.vue';
 import Search from '../views/Search.vue';
+import AddPatient from '../views/AddPatient.vue';
 
 Vue.use(VueRouter);
 
@@ -10,7 +10,7 @@ const routes: RouteConfig[] = [
   {
     path: '/',
     name: '/main',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Patients.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/Patients.vue'),
   },
   {
     path: '/search',
@@ -22,10 +22,16 @@ const routes: RouteConfig[] = [
     name: 'Patient',
     component: Patient,
   },
+  {
+    path: '/add_patient',
+    name: 'Add',
+    component: AddPatient,
+  },
 ];
 
 const router = new VueRouter({
   routes,
+  mode: 'history',
 });
 
 export default router;
