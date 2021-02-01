@@ -6,7 +6,7 @@
             </v-card-title>
             <v-card-text>
                 <p>Age: {{patient.age}}</p>
-                <p>Condition: {{patient.condition}}</p>
+                <p>Number of drugs: {{patient.medication.length}}</p>
             </v-card-text>
         </vs-card>
     </div>

@@ -18,4 +18,14 @@ export default class HttpService {
             },
         });
     }
+    public getInteractions(name){
+        return axios.get(this.basepath + '/get_patient_interactions/' + name)
+    }
+    public postPatient(patient: any){
+        return axios.post(this.basepath + "/add_patient", patient, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+    }
 }

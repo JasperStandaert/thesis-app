@@ -1,63 +1,47 @@
 <template>
-
-    <div>
-        <!--
+    <div class="patientform">
         <return/>
-        <form id="addPatient" @submit="checkPatient()" method="post">
+        <form id="addPatient">
             <md-field>
                 <label>First Name:</label>
-                <md-input v-model="first_name" required></md-input>
+                <md-input v-model="patient.first_name" required></md-input>
                 <span class="md-error">First name required</span>
             </md-field>
             <md-field>
                 <label>Last Name:</label>
-                <md-input v-model="last_name" required></md-input>
+                <md-input v-model="patient.last_name" required></md-input>
                 <span class="md-error">Last name required</span>
             </md-field>
             <md-field>
                 <label>Age:</label>
-                <md-input v-model="age" required></md-input>
+                <md-input v-model="patient.age" required></md-input>
                 <span class="md-error">Age required</span>
             </md-field>
-            <tags-input element-id="tags"
-                v-model="selectedMeds"
-                :existing-tags="this.medication"
-                :typeahead="true"
-                :typeahead-hide-discard="true"
-                :only-existing-tags="true"
-                placeholder = "Add medication for the new patient">
-            </tags-input>
+            <md-field>
+                <label for="medication"></label>
+                <multi-select
+                id="medication"
+                class="medication"
+                v-model="patient.medication"
+                :options="meds"
+                :multiple="true"
+                :close-on-select="true"
+                :clear-on-select="false"
+                placeholder="Search for medication">
+                </multi-select>
+            </md-field>
+            <md-button class="md-raised md-primary" style="align-items: center; margin: 20px 0 0 0;" :value="this.buttonVal" v-on:click=patientClick()>
+            </md-button>
         </form>
--->
-
-        <vs-card>
-            <v-container fluid>
-                <v-row align="center">
-                    <v-col cols="12">
-                        <v-autocomplete
-                            v-model="selectedMeds"
-                            :items="medication"
-                            outlined
-                            dense
-                            chips
-                            small-chips
-                            label="outlined"
-                            item-text="Medication"
-                            multiple>
-                        </v-autocomplete>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </vs-card>
     </div>
 </template>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@voerro/vue-tagsinput@2.4.3/dist/voerro-vue-tagsinput.js"></script>
 
+<script src="https://unpkg.com/vue-multiselect@2.1.0"></script>
 <script lang ="ts">
 import {Component, Vue} from 'vue-property-decorator'
 import router from '../router'
 import Return from '../components/Return.vue'
+import MultiSelect from 'vue-multiselect'
 import HttpService from '../service'
 
 const service = new HttpService();
@@ -65,27 +49,41 @@ const service = new HttpService();
 @Component({
     components:{
         Return,
+        MultiSelect,
     }
 })
 export default class AddPatient extends Vue {
 
-    first_name = ''
-    last_name = ''
-    age = 0
+    buttonVal = 'Add patient'
 
-    selectedMeds: any = []
-    medication: any = []
-    checkPatient(){
-        console.log("Added patient")
+    fn = ''
+    ln = ''
+    a = 0
+    patient =  {
+        first_name: '',
+        last_name: '',
+        age: 0,
+        medication: []
+        }
+    meds: any = []
+    patientClick(){
+        service.postPatient(this.patient).then( (response) =>{
+            if(response.status == 200){
+                console.log("Added patient succesfully")
+                router.push("/")
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     mounted(){
         service.getMedication().then( (response) => {
             if(response.status == 200){
                 for(var i = 0; i < response.data.length; i++){
-                    this.medication.push(response.data[i].Name.toString())
+                    this.meds.push(response.data[i].Name.toString())
                 }
-                console.log(this.medication.length + " drugs found")
+                console.log(this.meds.length + " drugs found")
             }
         }).catch((error) => {
             console.log("ERROR:");

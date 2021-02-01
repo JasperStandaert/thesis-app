@@ -3,15 +3,15 @@
         <v-container>
             <v-row>
                 <v-col cols="6">
-                    <medication-card/>
+                    <medication-card :medication="patient.medication"/>
                 </v-col>
                 <v-col cols="6">
-                    <interaction-card/>
+                    <interaction-card :patient="name"/>
                 </v-col>
             </v-row>
         </v-container>
-        <p @click="check()">Hello {{patient.first_name}}</p>
-        <patient-graph/>
+        <p>Hello {{patient.first_name}}</p>
+        <!--<patient-graph :patient="patient"/>-->
         <return/>
     </div>
 </template>
@@ -37,11 +37,8 @@ const service = new HttpService();
 
 
 export default class Patient extends Vue {
-    public patient: any =  this.$route.params.pat;
-
-    public check() {
-        console.log(this.patient == null);
-    }
+    patient: any =  this.$route.params.pat;
+    name = this.patient.first_name + "_" + this.patient.last_name
 }
 </script>
 

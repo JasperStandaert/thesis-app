@@ -3,13 +3,14 @@ import VueRouter, { RouteConfig } from 'vue-router';
 import Patient from '../views/Patient.vue';
 import Search from '../views/Search.vue';
 import AddPatient from '../views/AddPatient.vue';
+import DrugInformation from '../views/DrugInformation.vue'
 
 Vue.use(VueRouter);
 
 const routes: RouteConfig[] = [
   {
     path: '/',
-    name: '/main',
+    name: 'main',
     component: () => import(/* webpackChunkName: "about" */ '../views/Patients.vue'),
   },
   {
