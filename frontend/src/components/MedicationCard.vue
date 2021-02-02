@@ -1,14 +1,13 @@
 <template>
     <vs-card>
         <v-card-title>
-            Medication
+            Medication for {{patient}}
         </v-card-title>
         <v-card-text>
-            <ul>
-                <li v-for="(med, i) in medication" :key="i+1" :drug='med'>
-                    <p @click="showInfo(med)">{{med.Name}}</p>
-                </li>
-            </ul>
+            <div v-for="(med, i) in medication" :key="i">
+                <p>{{med.Name}}</p>
+                <button @click="remove(med.Name)">Remove this drug</button>
+            </div>
         </v-card-text>
     </vs-card>
 </template>
@@ -16,16 +15,26 @@
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator'
 import router from '../router'
+import HttpService from '../service'
+
+const service = new HttpService();
 @Component({
     components: {
     },
-    props: ['medication']
+    props: ['medication', 'pat_name']
 })
 export default class MedicationCard extends Vue {
     medication: any = this.$props.medication
+    patient: any = this.$props.pat_name
 
-    showInfo(drug: any){
-        console.log("boop")
+    remove(med: any){
+        service.removeDrug(this.patient, med).then( (response) =>{
+            if(response.status == 200){
+                console.log("succesfully removed")
+            }
+        }).catch((error)=>{
+            console.log(error)
+        })
     }
 }
 </script>

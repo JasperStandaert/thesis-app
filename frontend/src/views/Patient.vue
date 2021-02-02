@@ -1,18 +1,20 @@
 <template>
-    <div id="patient">
+    <div id="patient" >
+        <return/>
+        <p>Hello {{this.name}}</p>
         <v-container>
             <v-row>
                 <v-col cols="6">
-                    <medication-card :medication="patient.medication"/>
+                    <medication-card :medication="patient.medication" :pat_name="name"/>
                 </v-col>
                 <v-col cols="6">
                     <interaction-card :patient="name"/>
                 </v-col>
             </v-row>
         </v-container>
-        <p>Hello {{patient.first_name}}</p>
-        <!--<patient-graph :patient="patient"/>-->
-        <return/>
+        <div style="position: relative; width: 100%; height 500px;">
+            <patient-graph :patient="name"/>
+        </div>
     </div>
 </template>
 <script lang="ts">

@@ -18,8 +18,15 @@ export default class HttpService {
             },
         });
     }
-    public getInteractions(name){
+    public getInteractions(name: string){
         return axios.get(this.basepath + '/get_patient_interactions/' + name)
+    }
+    public createGraph(name: string){
+        return axios.get(this.basepath + '/create_patient_graph/' + name, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
     }
     public postPatient(patient: any){
         return axios.post(this.basepath + "/add_patient", patient, {
@@ -27,5 +34,8 @@ export default class HttpService {
                 'Content-Type': 'application/json'
             },
         });
+    }
+    public removeDrug(patient: string, drug: any){
+        return axios.delete(this.basepath + "/remove_drug_for_patient/" + patient + "/" + drug);
     }
 }

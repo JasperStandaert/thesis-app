@@ -1,8 +1,7 @@
-<script src="https://d3js.org/d3.v4.js"></script>
 <template>
-    <div id="patientGraph">
-      <network ref="network" :nodes="nodes" :edges="edges" :options="options"></network>
-    </div> 
+  <div id="patientGraph" style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px;">
+    <network ref="network" :nodes="nodes" :edges="edges" :options="options"></network>
+  </div> 
 </template>
 
 
@@ -19,23 +18,27 @@ const service = new HttpService();
 })
 
 export default class PatientGraph extends Vue {
-  patient = this.$props.patient
+  patientName = this.$props.patient
+
+  selected: any = null
   nodes: any = []
   edges: any = []
   options: any = {
     nodes: {
-    borderWidth: 4
+    borderWidth: 1,
     },
     edges: {
-      color: 'lightgray'
+      width: 10,
+      selectionWidth: 14,
+      length: 200
     }
   }
 
   mounted(){
-    service.createGraph(this.patient).then( (response) =>{
+    service.createGraph(this.patientName).then( (response) =>{
       if (response.status == 200){
-      
-        console.log(response.data)
+        this.nodes = response.data[0]
+        this.edges = response.data[1]
       }
     }).catch((error) =>{
       console.log(error)

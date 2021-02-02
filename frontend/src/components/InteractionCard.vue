@@ -29,8 +29,6 @@ export default class InteractionCard extends Vue {
         service.getInteractions(this.patientName).then((response) =>{
             if(response.status == 200){
                 this.interactions = response.data
-                console.log(response.data.length)
-                console.log("Interactions found")
             }
         }).catch((error) =>{
             console.log(error)
