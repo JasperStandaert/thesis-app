@@ -38,4 +38,7 @@ export default class HttpService {
     public removeDrug(patient: string, drug: any){
         return axios.delete(this.basepath + "/remove_drug_for_patient/" + patient + "/" + drug);
     }
+    public removePatient(patient: string){
+        return axios.delete(this.basepath + "/remove_patient/" + patient)
+    }
 }
