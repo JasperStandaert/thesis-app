@@ -52,10 +52,15 @@ export default class AddDrug extends Vue{
     }
 
     addDrug(name: string, patient: any, med: any){
+        patient = this.patient
         service.addDrug(name, med).then((response) =>{
             if(response.status == 200){
-                console.log(response)
-                router.push({name: 'Patient', params: {patient}})
+                service.getPatient(name).then((response) => {
+                    if(response.status == 200){
+                        var pat = response.data
+                        router.push({name: 'Patient', params: {pat}})
+                    }
+                })
             }
         }).catch((error) =>{
             console.log(error)

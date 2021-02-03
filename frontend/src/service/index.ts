@@ -29,7 +29,11 @@ export default class HttpService {
         });
     }
 
-    public addDrug(patient: any, drug: any){
+    public getPatient(name: string){
+        return axios.get(this.basepath + '/get_patient/' + name)
+    }
+
+    public addDrug(patient: string, drug: any){
         return axios.post(this.basepath + "/add_drug_for_patient/"+ patient + "/" + drug);
     }
     public postPatient(patient: any){
