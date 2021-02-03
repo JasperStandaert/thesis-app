@@ -28,6 +28,10 @@ export default class HttpService {
             },
         });
     }
+
+    public addDrug(patient: any, drug: any){
+        return axios.post(this.basepath + "/add_drug_for_patient/"+ patient + "/" + drug);
+    }
     public postPatient(patient: any){
         return axios.post(this.basepath + "/add_patient", patient, {
             headers: {
@@ -39,6 +43,6 @@ export default class HttpService {
         return axios.delete(this.basepath + "/remove_drug_for_patient/" + patient + "/" + drug);
     }
     public removePatient(patient: string){
-        return axios.delete(this.basepath + "/remove_patient/" + patient)
-    }
+        return axios.delete(this.basepath + "/remove_patient/" + patient);
+    }   
 }

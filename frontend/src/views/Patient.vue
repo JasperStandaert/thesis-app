@@ -1,11 +1,11 @@
 <template>
     <div id="patient" >
         <return/>
-        <p>Hello {{this.name}}</p>
+        <p>Hello {{patient.first_name}} {{patient.last_name}}</p>
         <v-container>
             <v-row>
                 <v-col cols="6">
-                    <medication-card :medication="patient.medication" :pat_name="name"/>
+                    <medication-card :medication="patient.medication" :patient="patient"/>
                 </v-col>
                 <v-col cols="6">
                     <interaction-card :patient="name"/>

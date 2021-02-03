@@ -3,14 +3,14 @@ import VueRouter, { RouteConfig } from 'vue-router';
 import Patient from '../views/Patient.vue';
 import Search from '../views/Search.vue';
 import AddPatient from '../views/AddPatient.vue';
-import DrugInformation from '../views/DrugInformation.vue'
+import AddDrug from '../views/AddDrug.vue'
 
 Vue.use(VueRouter);
 
 const routes: RouteConfig[] = [
   {
     path: '/',
-    name: 'main',
+    name: 'Patients',
     component: () => import(/* webpackChunkName: "about" */ '../views/Patients.vue'),
   },
   {
@@ -25,9 +25,14 @@ const routes: RouteConfig[] = [
   },
   {
     path: '/add_patient',
-    name: 'Add',
+    name: 'AddPatient',
     component: AddPatient,
   },
+  {
+    path: '/add_drug',
+    name: 'AddDrug',
+    component: AddDrug,
+  }
 ];
 
 const router = new VueRouter({

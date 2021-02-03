@@ -1,7 +1,8 @@
 <template>
     <div class="patientHeader" >
-        <vs-card >
-            <vs-card v-on:click="patientRoute(($event, patient))">
+        <vs-card v-if="show">
+            <div id="patient" v-on:click="patientRoute(($event, patient))">
+            <vs-card >
                 <v-card-title>
                     {{patient.first_name}} {{patient.last_name}}
                 </v-card-title>
@@ -10,9 +11,10 @@
                     <p>Number of drugs: {{patient.medication.length}}</p>
                 </v-card-text>
             </vs-card>
-            <vs-card>
+            </div>
+            <div>
                 <button @click="remove(patient)">Remove this patient</button>
-            </vs-card>
+            </div>
         </vs-card>  
     </div>
 </template>
@@ -34,6 +36,7 @@ export default class PatientHeader extends Vue {
 
     public patient: any = this.$props.patient;
     public name = this.patient.first_name + "_" + this.patient.last_name
+    public show = true
 
     public patientRoute(patient: any, e: any) {
         const pat: any = this.patient;
@@ -45,11 +48,14 @@ export default class PatientHeader extends Vue {
         service.removePatient(this.name).then((response)=>{
             if(response.status == 200){
                 console.log(response.data)
+                this.show = false
+                Vue.nextTick()
             }
         }).catch((error) =>{
             console.log(error)
         });
     }
+
 }
 </script>
 

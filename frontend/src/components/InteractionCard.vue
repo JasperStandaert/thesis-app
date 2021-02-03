@@ -1,5 +1,5 @@
 <template>
-    <vs-card>
+    <vs-card height="300px" max-height="300px">
         <v-card-title>
             Interactions
         </v-card-title>

@@ -10,12 +10,10 @@ import 'vuetify/dist/vuetify.min.css';
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.min.css';
 import VoerroTagsInput from '@voerro/vue-tagsinput';
-import Return from './components/Return.vue';
 import { Network } from "vue-vis-network";
 
 
 Vue.component('network', Network)
-Vue.component('return', Return)
 Vue.use(VueMaterial);
 Vue.component('tags-input', VoerroTagsInput);
 Vue.use(Vuetify);

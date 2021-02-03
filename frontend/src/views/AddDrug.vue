@@ -1,0 +1,69 @@
+<template>
+    <div id="addDrug">
+        <p>Add a drug for {{patient.first_name}}</p>
+        <form>
+            <md-field>
+                <label for="medication">Meds: </label>
+                <multi-select
+                    id="medication"
+                    class="medication"
+                    v-model="medication"
+                    :options="items"
+                    placeholder="Add a medication">
+                </multi-select>
+            </md-field>
+            <md-button class="md-raised md-primary" style="align-items: center; margin: 20px 0 0 0;" :value="this.buttonVal" v-on:click="addDrug(name, patient, medication)">
+            </md-button>
+        </form>
+    </div>
+</template>
+
+<script lang="ts">
+import {Component, Vue} from 'vue-property-decorator'
+import MultiSelect from 'vue-multiselect'
+import router from '../router'
+import HttpService from '../service'
+
+const service = new HttpService();
+
+@Component({
+    components: {
+        MultiSelect
+    },
+    props: ['patient']
+})
+export default class AddDrug extends Vue{
+    patient: any = this.$route.params.patient
+    name = this.patient.first_name + "_" + this.patient.last_name
+    medication: any = []
+    items: any = []
+    
+    mounted(){
+        console.log(this.patient.first_name)
+        service.getMedication().then((response) => {
+            if(response.status == 200){
+                for (var i = 0; i < response.data.length; i++){
+                    this.items.push(response.data[i].Name)
+                }
+            }
+        }).catch((error) =>{
+            console.log(error)
+        });
+    }
+
+    addDrug(name: string, patient: any, med: any){
+        service.addDrug(name, med).then((response) =>{
+            if(response.status == 200){
+                console.log(response)
+                router.push({name: 'Patient', params: {patient}})
+            }
+        }).catch((error) =>{
+            console.log(error)
+        });
+    }
+}
+</script>
+
+<style scoped>
+
+</style>
