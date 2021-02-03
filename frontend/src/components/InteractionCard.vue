@@ -3,20 +3,19 @@
         <v-card-title>
             Interactions
         </v-card-title>
-        <v-card-text>
-            <p v-for="(inter, i) in interactions" :key="i+1">{{inter[0]}} - {{inter[1]}}</p>
-        </v-card-text>
+        <interaction-info v-for="(inter, i) in interactions" :key="i+1" :drugA="inter[0]" :drugB="inter[1]" :desc="inter[2]"/>
     </vs-card>
 </template>
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator'
 import HttpService from '../service'
+import InteractionInfo from '../components/InteractionInfo.vue'
 
 const service = new HttpService();
 
 @Component({
     components: {
-
+        InteractionInfo,
     },
     props: ['patient']
 })

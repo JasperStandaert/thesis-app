@@ -31,6 +31,7 @@
                 </multi-select>
             </md-field>
             <md-button class="md-raised md-primary" style="align-items: center; margin: 20px 0 0 0;" :value="this.buttonVal" v-on:click=patientClick()>
+                Add Patient
             </md-button>
         </form>
     </div>

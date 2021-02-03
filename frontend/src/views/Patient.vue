@@ -1,6 +1,6 @@
 <template>
     <div id="patient" >
-        <return/>
+        <button @click="overview">Patients</button>
         <p>Hello {{patient.first_name}} {{patient.last_name}}</p>
         <v-container>
             <v-row>
@@ -21,7 +21,7 @@
 import MedicationCard from '../components/MedicationCard.vue';
 import InteractionCard from '../components/InteractionCard.vue';
 import PatientGraph from '../components/PatientGraph.vue';
-import Return from '../components/Return.vue';
+import router from "../router"
 import { Component, Vue } from 'vue-property-decorator';
 import HttpService from '../service';
 
@@ -32,7 +32,6 @@ const service = new HttpService();
         MedicationCard,
         InteractionCard,
         PatientGraph,
-        Return,
     },
     props: ['patient'],
 })
@@ -41,6 +40,10 @@ const service = new HttpService();
 export default class Patient extends Vue {
     patient: any =  this.$route.params.pat;
     name = this.patient.first_name + "_" + this.patient.last_name
+
+    overview(){
+        router.push("/")
+    }
 }
 </script>
 
