@@ -1,14 +1,17 @@
 <template>
     <div id="patientOverview">
-        <p>Patients overview</p>
-        <PatientHeader class='patient' v-for="(patient, i) in patients" :key="i+1" :patient='patient'/>
-        <button @click="addPatient()">Add a new patient</button>
+        <program-header/>
+        <div class="content">
+            <PatientHeader class='patient' v-for="(patient, i) in patients" :key="i+1" :patient='patient'/>
+            <button @click="addPatient()">Add a new patient</button>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import PatientHeader from '../components/PatientHeader.vue';
+import ProgramHeader from '../components/ProgramHeader.vue'
 import store from '../store';
 import router from '../router';
 import HttpService from '../service';
@@ -18,6 +21,7 @@ const service = new HttpService();
 @Component({
     components: {
         PatientHeader,
+        ProgramHeader,
     },
 })
 export default class Patients extends Vue {

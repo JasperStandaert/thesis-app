@@ -21,6 +21,9 @@ export default class HttpService {
     public getInteractions(name: string){
         return axios.get(this.basepath + '/get_patient_interactions/' + name)
     }
+    public getInteractionDescription(drugA: string, drugB: string){
+        return axios.get(this.basepath + '/get_interaction_for/' + drugA + '/' + drugB)
+    }
     public createGraph(name: string){
         return axios.get(this.basepath + '/create_patient_graph/' + name, {
             headers: {

@@ -1,7 +1,14 @@
 <template>
-  <div id="patientGraph" style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px;">
-    <network ref="network" :nodes="nodes" :edges="edges" :options="options"></network>
-  </div> 
+  <vs-card>
+    <v-card-title>
+      Medical information visualized
+    </v-card-title>
+    <v-card-text>
+    </v-card-text>
+    <div class="container">
+      <network :nodes="nodes" :edges="edges" :options="options"></network>
+    </div>
+  </vs-card>
 </template>
 
 
@@ -47,5 +54,11 @@ export default class PatientGraph extends Vue {
 }
 </script>
 <style scoped>
+
+.container{
+  display: flex;
+  padding: 10px;
+  height: 300px;
+}
 
 </style>

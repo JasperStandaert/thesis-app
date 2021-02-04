@@ -33,13 +33,6 @@ export default class DrugInfoCard extends Vue{
     public show = false
     public isRemoved = false
 
-    toggle(){
-        this.show != this.show
-        if(this.show){
-            console.log("boop")
-        }
-    }
-
     remove(med: string, name: string){
         service.removeDrug(name, med).then( (response) =>{
             if(response.status == 200){

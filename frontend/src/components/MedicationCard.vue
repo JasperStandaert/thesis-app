@@ -5,7 +5,7 @@
         </v-card-title>
         <drug-info-card v-for="(med, i) in medication" :key="i" :drug="med" :patient="pat_name"/>
         <v-card-text>
-            <button @click="addDrug(patient)">Add drug</button>
+            <button class="addBtn" @click="addDrug(patient)">Add drug</button>
         </v-card-text>
     </vs-card>
 </template>
@@ -37,5 +37,11 @@ export default class MedicationCard extends Vue {
 </script>
 
 <style scoped>
+
+.addBtn{
+    border-style: solid;
+    border-width: 2px;
+    border-color: darkgrey;
+}
 
 </style>

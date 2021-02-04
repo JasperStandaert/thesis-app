@@ -1,6 +1,6 @@
 <template>
     <div id="patient" >
-        <button @click="overview">Patients</button>
+        <profile-header :fn='patient.first_name' :ln='patient.last_name'/>
         <p>Hello {{patient.first_name}} {{patient.last_name}}</p>
         <v-container>
             <v-row>
@@ -10,15 +10,19 @@
                 <v-col cols="6">
                     <interaction-card :patient="name"/>
                 </v-col>
+                <v-col cols="12">
+                    <div style="position: relative; width: 100%; height 500px;">
+                        <patient-graph :patient="name"/>
+                    </div>
+                </v-col>
             </v-row>
         </v-container>
-        <div style="position: relative; width: 100%; height 500px;">
-            <patient-graph :patient="name"/>
-        </div>
+
     </div>
 </template>
 <script lang="ts">
 import MedicationCard from '../components/MedicationCard.vue';
+import ProfileHeader from '../components/ProfileHeader.vue'
 import InteractionCard from '../components/InteractionCard.vue';
 import PatientGraph from '../components/PatientGraph.vue';
 import router from "../router"
@@ -32,6 +36,7 @@ const service = new HttpService();
         MedicationCard,
         InteractionCard,
         PatientGraph,
+        ProfileHeader,
     },
     props: ['patient'],
 })
