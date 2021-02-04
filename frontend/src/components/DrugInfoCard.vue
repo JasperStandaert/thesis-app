@@ -2,7 +2,7 @@
     <div class='drugBar'>
         <h2>{{drug.Name}}</h2>
         <button @click="show = !show">Show more information</button>
-        <button>Remove</button>
+        <button @click="remove(drug.Name, pat)">Remove</button>
         <div v-if="show">
             <h3>Description: </h3>
             <p>{{drug.Description}}</p>
@@ -39,7 +39,7 @@ export default class DrugInfoCard extends Vue{
         }
     }
 
-    remove(med: any, name: string){
+    remove(med: string, name: string){
         service.removeDrug(name, med).then( (response) =>{
             if(response.status == 200){
                 console.log("succesfully removed");
