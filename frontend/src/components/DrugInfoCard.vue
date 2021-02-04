@@ -1,5 +1,5 @@
 <template>
-    <div class='drugBar'>
+    <div class='drugBar' v-if="!isRemoved">
         <h2>{{drug.Name}}</h2>
         <button @click="show = !show">Show more information</button>
         <button @click="remove(drug.Name, pat)">Remove</button>
@@ -31,6 +31,7 @@ export default class DrugInfoCard extends Vue{
     drug = this.$props.drug
     pat = this.$props.patient
     public show = false
+    public isRemoved = false
 
     toggle(){
         this.show != this.show
@@ -43,6 +44,8 @@ export default class DrugInfoCard extends Vue{
         service.removeDrug(name, med).then( (response) =>{
             if(response.status == 200){
                 console.log("succesfully removed");
+                this.isRemoved = true
+                Vue.nextTick()
             }
         }).catch((error)=>{
             console.log(error)

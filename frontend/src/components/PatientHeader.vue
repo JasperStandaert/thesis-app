@@ -48,7 +48,6 @@ export default class PatientHeader extends Vue {
         service.removePatient(this.name).then((response)=>{
             if(response.status == 200){
                 console.log(response.data)
-                this.show = false
                 Vue.nextTick()
             }
         }).catch((error) =>{
