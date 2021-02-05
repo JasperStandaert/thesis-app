@@ -1,8 +1,9 @@
 <template>
-    <vs-card height="00px" max-height="300px">
+    <vs-card outlined class="medicationCard">
         <v-card-title>
             Medication
         </v-card-title>
+        <v-divider/>
         <drug-info-card v-for="(med, i) in medication" :key="i" :drug="med" :patient="pat_name"/>
         <v-card-text>
             <button class="addBtn" @click="addDrug(patient)">Add drug</button>
@@ -42,6 +43,11 @@ export default class MedicationCard extends Vue {
     border-style: solid;
     border-width: 2px;
     border-color: darkgrey;
+}
+
+.medicationCard{
+    height: 250px;
+    width: 300px;
 }
 
 </style>

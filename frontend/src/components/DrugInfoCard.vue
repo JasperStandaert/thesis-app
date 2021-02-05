@@ -11,6 +11,7 @@
             <h3>Toxicity: </h3>
             <p>{{drug.Toxicity}}</p>
         </div>
+        <v-divider/>
     </div>
 </template>
 
@@ -53,6 +54,7 @@ export default class DrugInfoCard extends Vue{
     border-width: 2px;
     border-style: solid;
     border-color: darkgrey;
+    text-align: left;
 }
 
 </style>

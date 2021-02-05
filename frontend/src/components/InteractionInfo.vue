@@ -5,6 +5,7 @@
         <div v-if="show">
             <p>{{description}}</p>
         </div>
+        <v-divider/>
     </div>  
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <vs-card>
+  <vs-card class="patientGraph">
     <v-card-title>
       Medical information visualized
     </v-card-title>
@@ -30,16 +30,30 @@ export default class PatientGraph extends Vue {
   selected: any = null
   nodes: any = []
   edges: any = []
-  options: any = {
+    options: any = {
+      autoResize: true,
+      height: '450px',
+      width: '450px',
     nodes: {
     borderWidth: 1,
     },
     edges: {
-      width: 10,
-      selectionWidth: 14,
-      length: 200
+      width: 5,
+      selectionWidth: 9,
+      length: 300,
+      scaleFactor: 1,
+    },
+    physics: {
+      enabled: true,
+      stabilization: { // YMMV; higher value takes longer but results in better layout
+        iterations: 0,    
+      } 
+    },
+    layout: {
+      randomSeed: 2,
     }
   }
+
 
   mounted(){
     service.createGraph(this.patientName).then( (response) =>{
@@ -58,7 +72,13 @@ export default class PatientGraph extends Vue {
 .container{
   display: flex;
   padding: 10px;
-  height: 300px;
+  height: 400px;
+  z-index: 0;
+}
+
+.patientGraph{
+  width: 600px;
+  height: 600px;
 }
 
 </style>

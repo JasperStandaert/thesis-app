@@ -1,8 +1,9 @@
 <template>
-    <vs-card height="300px" max-height="300px">
+    <vs-card outlined class="interactionCard">
         <v-card-title>
             Interactions
         </v-card-title>
+        <v-divider/>
         <interaction-info v-for="(inter, i) in interactions" :key="i+1" :drugA="inter[0]" :drugB="inter[1]" :desc="inter[2]"/>
     </vs-card>
 </template>
@@ -36,5 +37,10 @@ export default class InteractionCard extends Vue {
 }
 </script>
 <style scoped>
+
+.interactionCard{
+    height: 250px;
+    width: 300px;
+}
 
 </style>

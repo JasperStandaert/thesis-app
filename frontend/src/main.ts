@@ -4,21 +4,25 @@ import router from './router';
 import store from './store';
 import Vuesax from 'vuesax';
 import 'vuesax/dist/vuesax.css';
-import VueVega from 'vue-vega';
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.min.css';
 import VoerroTagsInput from '@voerro/vue-tagsinput';
 import { Network } from "vue-vis-network";
+import {BootstrapVue, IconsPlugin} from 'bootstrap-vue';
 
 
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
 Vue.component('network', Network)
 Vue.use(VueMaterial);
 Vue.component('tags-input', VoerroTagsInput);
 Vue.use(Vuetify);
 Vue.use(Vuesax);
-Vue.use(VueVega);
 Vue.config.productionTip = false;
 
 
