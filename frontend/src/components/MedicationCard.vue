@@ -1,12 +1,17 @@
 <template>
     <vs-card outlined class="medicationCard">
-        <v-card-title>
-            Medication
+        <v-card-title class="title">
+            <div>
+            <h1 style="font-size: 22px; text-align: center">Medication</h1>
+            </div>
+            <div>
+                <v-btn class="addBtn" @click="addDrug(patient)">Add drug</v-btn>
+            </div>
         </v-card-title>
         <v-divider/>
         <drug-info-card v-for="(med, i) in medication" :key="i" :drug="med" :patient="pat_name"/>
         <v-card-text>
-            <button class="addBtn" @click="addDrug(patient)">Add drug</button>
+            
         </v-card-text>
     </vs-card>
 </template>
@@ -39,15 +44,10 @@ export default class MedicationCard extends Vue {
 
 <style scoped>
 
-.addBtn{
-    border-style: solid;
-    border-width: 2px;
-    border-color: darkgrey;
-}
 
 .medicationCard{
-    height: 250px;
+    height: 300px;
     width: 300px;
+    overflow-y: scroll;
 }
-
 </style>

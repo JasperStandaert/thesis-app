@@ -14,7 +14,6 @@ export default {
 
 .header{
     padding: 30px;
-    text-align: center;
     color: white;
     font-size: 16px;
     background-color: #2e6dff;

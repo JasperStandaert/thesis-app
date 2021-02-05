@@ -3,7 +3,7 @@
         <program-header/>
         <div class="content">
             <PatientHeader class='patient' v-for="(patient, i) in patients" :key="i+1" :patient='patient'/>
-            <button @click="addPatient()">Add a new patient</button>
+            <v-btn elevation="2" @click="addPatient()">Add a new patient</v-btn>
         </div>
     </div>
 </template>

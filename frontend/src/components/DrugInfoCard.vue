@@ -1,9 +1,9 @@
 <template>
-    <div class='drugBar' v-if="!isRemoved">
+    <div class='drugBar' v-if="!isRemoved" >
         <h2>{{drug.Name}}</h2>
         <button @click="show = !show">Show more information</button>
         <button @click="remove(drug.Name, pat)">Remove</button>
-        <div v-if="show">
+        <div v-if="show" class="text-center">
             <h3>Description: </h3>
             <p>{{drug.Description}}</p>
             <h3>Indication: </h3>

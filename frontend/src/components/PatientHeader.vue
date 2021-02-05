@@ -2,18 +2,16 @@
     <div class="patientHeader" >
         <vs-card v-if="show">
             <div id="patient" v-on:click="patientRoute(($event, patient))">
-            <vs-card >
                 <v-card-title>
-                    {{patient.first_name}} {{patient.last_name}}
+                    <h1>{{patient.first_name}} {{patient.last_name}}</h1>
                 </v-card-title>
                 <v-card-text>
                     <p>Age: {{patient.age}}</p>
                     <p>Number of drugs: {{patient.medication.length}}</p>
                 </v-card-text>
-            </vs-card>
-            </div>
-            <div>
-                <button @click="remove(patient)">Remove this patient</button>
+                <v-actions>
+                    <v-btn elevation="2" @click="remove(patient)">Remove this patient</v-btn>
+                </v-actions>
             </div>
         </vs-card>  
     </div>
@@ -60,5 +58,9 @@ export default class PatientHeader extends Vue {
 </script>
 
 <style scoped>
+
+h1{
+    font-size: 24px;
+}
 
 </style>
