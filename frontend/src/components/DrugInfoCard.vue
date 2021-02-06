@@ -4,7 +4,7 @@
         <div @click="remove(drug.Name, pat)">
             <img src="../assets/remove.svg"/>
         </div>
-        <div @click="show = !show">
+        <div @click="show = !show" class="removeButton">
             <img v-if="!show" src="../assets/expand.svg" alt="expand">
             <img v-else src="../assets/collapse.svg" alt="Collapse">
         </div>
@@ -60,6 +60,12 @@ export default class DrugInfoCard extends Vue{
     border-style: solid;
     border-color: darkgrey;
     text-align: left;
+}
+
+.removeButton{
+    justify-content: flex-end;
+    display: flex;
+
 }
 
 h2{

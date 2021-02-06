@@ -1,7 +1,7 @@
 <template>
     <div class="interInfo">
         <p>{{drugA}} - {{drugB}}</p>
-        <div @click="show = !show">
+        <div @click="show = !show" class="interactionButton">
             <img v-if="!show" src="../assets/expand.svg" alt="expand">
             <img v-else src="../assets/collapse.svg" alt="Collapse">
         </div>
@@ -44,5 +44,8 @@ export default class InteractionInfo extends Vue{
 </script>
 
 <style scoped>
-
+.interactionButton{
+    justify-content: flex-end;
+    display: flex;
+}
 </style>

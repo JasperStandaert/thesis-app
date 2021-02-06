@@ -35,13 +35,12 @@ export default class PatientGraph extends Vue {
       height: '450px',
       width: '450px',
     nodes: {
-    borderWidth: 1,
+      borderWidth: 1,
     },
     edges: {
       width: 5,
       selectionWidth: 9,
       length: 300,
-      scaleFactor: 1,
     },
     physics: {
       enabled: true,
@@ -70,15 +69,14 @@ export default class PatientGraph extends Vue {
 <style scoped>
 
 .container{
+  justify-content: flex-start;
   display: flex;
   padding: 10px;
-  height: 400px;
-  z-index: 0;
+  height: 300px;
 }
 
 .patientGraph{
-  width: 600px;
-  height: 600px;
+  height: 400px;
 }
 
 </style>

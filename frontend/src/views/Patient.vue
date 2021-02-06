@@ -2,16 +2,17 @@
     <div id="patient" >
         <profile-header :fn='patient.first_name' :ln='patient.last_name'/>
         <v-container>
-            <v-row class="mb-6">
-                <v-col md="6">
-                    <patient-graph :patient="name"/>
+            <v-row>
+                <v-col cols="6">
+                    <patient-card :patient="patient"/>
                 </v-col>
-                <v-col md="3" offset-md="7">
+                <v-col cols="6">
                     <medication-card :medication="patient.medication" :patient="patient"/>
                 </v-col>
-            </v-row>
-            <v-row class="mb-6">
-                <v-col cols="2" offset-cols="4">
+                <v-col cols="8">
+                    <patient-graph :patient="name"/>   
+                </v-col>
+                <v-col cols="4">
                     <interaction-card :patient="name"/>
                 </v-col>
             </v-row>
@@ -23,6 +24,7 @@ import MedicationCard from '../components/MedicationCard.vue';
 import ProfileHeader from '../components/ProfileHeader.vue'
 import InteractionCard from '../components/InteractionCard.vue';
 import PatientGraph from '../components/PatientGraph.vue';
+import PatientCard from '../components/PatientCard.vue'
 import router from "../router"
 import { Component, Vue } from 'vue-property-decorator';
 import HttpService from '../service';
@@ -33,6 +35,7 @@ const service = new HttpService();
     components: {
         MedicationCard,
         InteractionCard,
+        PatientCard,
         PatientGraph,
         ProfileHeader,
     },

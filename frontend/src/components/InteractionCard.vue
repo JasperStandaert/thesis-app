@@ -39,7 +39,7 @@ export default class InteractionCard extends Vue {
 <style scoped>
 
 .interactionCard{
-    height: 300px;
+    height: 400px;
     width: 300px;
     overflow-y: scroll;
 }

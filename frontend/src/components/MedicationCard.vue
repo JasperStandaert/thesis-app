@@ -46,8 +46,7 @@ export default class MedicationCard extends Vue {
 
 
 .medicationCard{
-    height: 300px;
-    width: 300px;
+    height: 200px;
     overflow-y: scroll;
 }
 </style>

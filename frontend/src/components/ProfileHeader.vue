@@ -33,29 +33,16 @@ export default class ProfileHeader extends Vue{
 <style scoped>
 
 .navbar{
-    padding: 30px;
+    padding: 20px;
     color: white;
     font-size: 16px;
     background-color: #2e6dff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 70px;
 }
 
 .name{
     padding: 5px;
-}
-
-.patients{
-    padding: 0px 0px 2px 2px;
-    margin-bottom: 10px;
-}
-
-.navbar.vue-fixed-header--isFixed{
-    text-align: center;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    
 }
 
 fixed-header{
