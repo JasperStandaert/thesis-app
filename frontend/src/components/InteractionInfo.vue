@@ -1,7 +1,10 @@
 <template>
     <div class="interInfo">
         <p>{{drugA}} - {{drugB}}</p>
-        <button @click="show = !show">Show more information</button>
+        <div @click="show = !show">
+            <img v-if="!show" src="../assets/expand.svg" alt="expand">
+            <img v-else src="../assets/collapse.svg" alt="Collapse">
+        </div>
         <div v-if="show">
             <p>{{description}}</p>
         </div>

@@ -1,9 +1,14 @@
 <template>
     <div class='drugBar' v-if="!isRemoved" >
         <h2>{{drug.Name}}</h2>
-        <button @click="show = !show">Show more information</button>
-        <button @click="remove(drug.Name, pat)">Remove</button>
-        <div v-if="show" class="text-center">
+        <div @click="remove(drug.Name, pat)">
+            <img src="../assets/remove.svg"/>
+        </div>
+        <div @click="show = !show">
+            <img v-if="!show" src="../assets/expand.svg" alt="expand">
+            <img v-else src="../assets/collapse.svg" alt="Collapse">
+        </div>
+        <div v-if="show">
             <h3>Description: </h3>
             <p>{{drug.Description}}</p>
             <h3>Indication: </h3>
@@ -55,6 +60,10 @@ export default class DrugInfoCard extends Vue{
     border-style: solid;
     border-color: darkgrey;
     text-align: left;
+}
+
+h2{
+    font-size: 18px;
 }
 
 </style>

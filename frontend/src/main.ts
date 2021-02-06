@@ -11,10 +11,7 @@ import 'vue-material/dist/vue-material.min.css';
 import VoerroTagsInput from '@voerro/vue-tagsinput';
 import { Network } from "vue-vis-network";
 import {BootstrapVue, IconsPlugin} from 'bootstrap-vue';
-
-
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
