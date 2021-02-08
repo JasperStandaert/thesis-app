@@ -1,9 +1,9 @@
 <template>
     <div class="navbar">
         <h1 class="name">{{first_name}} {{last_name}}</h1>
-        <p align="left">
-            <v-btn elevation="2" color="cyan" class="patients" @click="overview">Patients</v-btn>
-        </p>
+        <div class="patients">
+            <v-btn elevation="2" color="cyan" class="button" @click="overview">Patients</v-btn>
+        </div>
     </div>
 </template>
 
@@ -43,6 +43,19 @@ export default class ProfileHeader extends Vue{
 
 .name{
     padding: 5px;
+}
+
+.patients{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.button{
+    padding: 15px 32px;
+    text-align: center;
+    margin: 13px 12px;
+    border: none;
 }
 
 fixed-header{

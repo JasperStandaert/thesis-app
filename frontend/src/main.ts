@@ -13,6 +13,8 @@ import { Network } from "vue-vis-network";
 import {BootstrapVue, IconsPlugin} from 'bootstrap-vue';
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
+import './assets/style/style.scss'
+
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.component('network', Network)

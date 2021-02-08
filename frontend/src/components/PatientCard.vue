@@ -1,6 +1,9 @@
 <template>
     <div>
         <vs-card class="patientcard">
+            <div>
+                <img src="../assets/face.svg" alt="Profile picture" id="profile">
+            </div>
             <v-card-title>
                 {{patient.first_name}} {{patient.last_name}}
             </v-card-title>
@@ -31,4 +34,8 @@ export default class PatientCard extends Vue{
     height: 200px;
 }
 
+img{
+    width: 75px;
+    height: 75px;
+}
 </style>

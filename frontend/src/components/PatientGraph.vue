@@ -32,8 +32,8 @@ export default class PatientGraph extends Vue {
   edges: any = []
     options: any = {
       autoResize: true,
-      height: '450px',
-      width: '450px',
+      height: '280px',
+      width: '725px',
     nodes: {
       borderWidth: 1,
     },

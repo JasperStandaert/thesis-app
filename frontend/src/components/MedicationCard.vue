@@ -1,11 +1,9 @@
 <template>
     <vs-card outlined class="medicationCard">
         <v-card-title class="title">
-            <div>
             <h1 style="font-size: 22px; text-align: center">Medication</h1>
-            </div>
             <div>
-                <v-btn class="addBtn" @click="addDrug(patient)">Add drug</v-btn>
+                <v-btn elevation="2" class="addBtn" @click="addDrug(patient)">Add drug</v-btn>
             </div>
         </v-card-title>
         <v-divider/>
@@ -48,5 +46,11 @@ export default class MedicationCard extends Vue {
 .medicationCard{
     height: 200px;
     overflow-y: scroll;
+}
+.addbtn{
+    padding: 15px 32px;
+    text-align: center;
+    margin: 150px 12px;
+    border: none;
 }
 </style>
