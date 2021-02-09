@@ -39,7 +39,6 @@ export default class PatientGraph extends Vue {
     },
     edges: {
       width: 5,
-      borderWidth: 1,
       selectionWidth: 9,
       length: 300,
     },
