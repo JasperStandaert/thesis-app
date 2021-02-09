@@ -4,6 +4,7 @@ import Patient from '../views/Patient.vue';
 import Search from '../views/Search.vue';
 import AddPatient from '../views/AddPatient.vue';
 import AddDrug from '../views/AddDrug.vue'
+import GraphView from '../views/GraphView.vue'
 
 Vue.use(VueRouter);
 
@@ -22,6 +23,12 @@ const routes: RouteConfig[] = [
     path: '/patient',
     name: 'Patient',
     component: Patient,
+  },
+  {
+    path: '/patient/graph',
+    name: 'Patient-Graph',
+    component: GraphView,
+    meta: {transitionName: 'slide'}
   },
   {
     path: '/add_patient',

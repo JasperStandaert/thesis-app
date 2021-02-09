@@ -12,9 +12,12 @@ import VoerroTagsInput from '@voerro/vue-tagsinput';
 import { Network } from "vue-vis-network";
 import {BootstrapVue, IconsPlugin} from 'bootstrap-vue';
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css'
 
 import './assets/style/style.scss'
 
+Vue.component('v-select', vSelect)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.component('network', Network)

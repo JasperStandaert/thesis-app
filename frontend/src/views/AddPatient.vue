@@ -18,7 +18,11 @@
                 <span class="md-error">Age required</span>
             </md-field>
             <md-field>
-                <label for="medication"></label>
+               <p>Gender:</p><br>
+               <v-select v-model="patient.gender" :options='options'></v-select>
+            </md-field>
+            <md-field>
+                <p>Medication: </p>
                 <multi-select
                 id="medication"
                 class="medication"
@@ -56,15 +60,18 @@ const service = new HttpService();
 export default class AddPatient extends Vue {
 
     buttonVal = 'Add patient'
+    options = ['Male', 'Female', 'Other']
 
     fn = ''
     ln = ''
     a = 0
+    g = ''
     patient =  {
         first_name: '',
         last_name: '',
         age: 0,
-        medication: []
+        medication: [],
+        gender: ''
         }
     meds: any = []
     patientClick(){

@@ -8,7 +8,10 @@
                 {{patient.first_name}} {{patient.last_name}}
             </v-card-title>
             <v-card-text>
-                Age: {{patient.age}}
+                <div class="patText">
+                    Age: {{patient.age}}<br>
+                    Gender: {{patient.gender}}
+                </div>
             </v-card-text>
         </vs-card>
     </div>
@@ -37,5 +40,9 @@ export default class PatientCard extends Vue{
 img{
     width: 75px;
     height: 75px;
+}
+
+.patText{
+    text-align: left;
 }
 </style>

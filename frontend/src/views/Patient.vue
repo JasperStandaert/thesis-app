@@ -17,6 +17,7 @@
                 </v-col>
             </v-row>
         </v-container>
+        <button @click='seeGraph(patient)'>Click to see graph</button>
     </div>
 </template>
 <script lang="ts">
@@ -49,6 +50,9 @@ export default class Patient extends Vue {
 
     overview(){
         router.push("/")
+    }
+    seeGraph(patient: any){
+        router.push({name: 'Patient-Graph', params: {patient}})
     }
 }
 </script>
