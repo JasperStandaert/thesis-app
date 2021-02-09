@@ -1,10 +1,10 @@
 <template>
     <div class="interInfo">
-        <p>{{drugA}} - {{drugB}}</p>
-        <div @click="show = !show" class="interactionButton">
-            <img v-if="!show" src="../assets/expand.svg" alt="expand">
-            <img v-else src="../assets/collapse.svg" alt="Collapse">
-        </div>
+        <h3 class="inter">
+            {{drugA}} - {{drugB}}
+            <img v-if="!show"  @click="show = !show" src="../assets/expand.svg" alt="expand">
+            <img v-else  @click="show = !show" src="../assets/collapse.svg" alt="Collapse">
+        </h3>
         <div v-if="show">
             <p>{{description}}</p>
         </div>
@@ -44,8 +44,7 @@ export default class InteractionInfo extends Vue{
 </script>
 
 <style scoped>
-.interactionButton{
-    justify-content: flex-end;
-    display: flex;
+.inter{
+    text-align: left;
 }
 </style>

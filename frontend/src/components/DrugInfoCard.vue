@@ -1,12 +1,12 @@
 <template>
     <div class='drugBar' v-if="!isRemoved" >
-        <h2>{{drug.Name}}</h2>
-        <div @click="remove(drug.Name, pat)">
-            <img src="../assets/remove.svg"/>
-        </div>
-        <div @click="show = !show" class="removeButton">
-            <img v-if="!show" src="../assets/expand.svg" alt="expand">
-            <img v-else src="../assets/collapse.svg" alt="Collapse">
+        <div>
+            <h3 class="med">
+                {{drug.Name}}
+                <img v-if="!show" src="../assets/expand.svg" alt="expand" @click="show = !show">
+                <img v-else src="../assets/collapse.svg" alt="Collapse" @click="show = !show">
+            </h3>
+            <img src="../assets/remove.svg" class="remove"/>
         </div>
         <div v-if="show">
             <h3>Description: </h3>
@@ -61,15 +61,12 @@ export default class DrugInfoCard extends Vue{
     border-color: darkgrey;
     text-align: left;
 }
-
-.removeButton{
-    justify-content: flex-end;
-    display: flex;
-
+.med{
+    text-align: left;
 }
-
-h2{
-    font-size: 18px;
+.remove{
+    position: relative;
+    left: 245px;
 }
 
 </style>

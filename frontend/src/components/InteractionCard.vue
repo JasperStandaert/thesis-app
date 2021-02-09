@@ -1,6 +1,6 @@
 <template>
     <vs-card outlined class="interactionCard">
-        <v-card-title>
+        <v-card-title class="title">
             Interactions
         </v-card-title>
         <v-divider/>
@@ -39,7 +39,7 @@ export default class InteractionCard extends Vue {
 <style scoped>
 
 .interactionCard{
-    height: 400px;
+    height: 250px;
     width: 300px;
     overflow-y: scroll;
 }
