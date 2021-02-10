@@ -4,6 +4,18 @@
         <div class="patients">
             <v-btn elevation="2" color="cyan" class="button" @click="overview">Patients</v-btn>
         </div>
+        <div class="tabs">
+            <vs-tabs alignment="right">
+                <vs-tab label="Patient profile">
+                    <div>
+                    </div>
+                </vs-tab>
+                <vs-tab label="Interaction graph">
+                    <div>
+                    </div>
+                </vs-tab>
+            </vs-tabs>
+        </div>
     </div>
 </template>
 
@@ -60,6 +72,10 @@ export default class ProfileHeader extends Vue{
 
 fixed-header{
     background-color: #2e6dff;
+}
+.tabs{
+    position: relative;
+    top: 0;
 }
 
 </style>

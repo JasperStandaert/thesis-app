@@ -9,12 +9,6 @@
                 <v-col cols="6">
                     <medication-card :medication="patient.medication" :patient="patient"/>
                 </v-col>
-                <v-col cols="8">
-                    <patient-graph :patient="name"/>   
-                </v-col>
-                <v-col cols="4">
-                    <interaction-card :patient="name"/>
-                </v-col>
             </v-row>
         </v-container>
         <button @click='seeGraph()'>Click to see graph</button>

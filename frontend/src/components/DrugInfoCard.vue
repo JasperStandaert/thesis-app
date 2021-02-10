@@ -1,22 +1,29 @@
 <template>
     <div class='drugBar' v-if="!isRemoved" >
-        <div>
-            <h3 class="med">
-                {{drug.Name}}
-                <img v-if="!show" src="../assets/expand.svg" alt="expand" @click="show = !show">
-                <img v-else src="../assets/collapse.svg" alt="Collapse" @click="show = !show">
-            </h3>
-            <img src="../assets/remove.svg" class="remove"/>
-        </div>
-        <div v-if="show">
-            <h3>Description: </h3>
-            <p>{{drug.Description}}</p>
-            <h3>Indication: </h3>
-            <p>{{drug.Indication}}</p>
-            <h3>Toxicity: </h3>
-            <p>{{drug.Toxicity}}</p>
-        </div>
-        <v-divider/>
+        <vs-card>
+            <v-title>
+                <h3>
+                    {{drug.Name}}
+                    <img v-if="!show" src="../assets/expand.svg" alt="expand" @click="show = !show">
+                    <img v-else src="../assets/collapse.svg" alt="Collapse" @click="show = !show">
+                </h3>
+            </v-title>
+            <v-text>
+                <div v-if="show">
+                    <h3>Description: </h3>
+                    <p>{{drug.Description}}</p>
+                    <h3>Indication: </h3>
+                    <p>{{drug.Indication}}</p>
+                    <h3>Toxicity: </h3>
+                    <p>{{drug.Toxicity}}</p>
+                </div>
+            </v-text>
+            <v-card-actions>
+                <button @click="remove(drug.Name, pat)" class="remove">
+                    <img src="../assets/remove.svg" />
+                </button>
+            </v-card-actions>
+        </vs-card>
     </div>
 </template>
 
@@ -66,7 +73,7 @@ export default class DrugInfoCard extends Vue{
 }
 .remove{
     position: relative;
-    left: 245px;
+    left: 480px;
 }
 
 </style>

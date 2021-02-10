@@ -5,10 +5,10 @@
 
         <v-container>
             <v-row>
-                <v-col cols="8">
+                <v-col cols="7">
                     <patient-graph :patient="name"/>
                 </v-col>
-                <v-col cols="4">
+                <v-col cols="5">
                     <interaction-card :patient="name"/>
                 </v-col>
             </v-row>

@@ -1,14 +1,17 @@
 <template>
     <div class="interInfo">
-        <h3 class="inter">
-            {{drugA}} - {{drugB}}
-            <img v-if="!show"  @click="show = !show" src="../assets/expand.svg" alt="expand">
-            <img v-else  @click="show = !show" src="../assets/collapse.svg" alt="Collapse">
-        </h3>
+        <vs-card>
+            <v-card-title>
+                <p>
+                    {{drugA}} - {{drugB}}
+                    <img v-if="!show"  @click="show = !show" src="../assets/expand.svg" alt="expand">
+                    <img v-else  @click="show = !show" src="../assets/collapse.svg" alt="Collapse">
+                </p>
+            </v-card-title>
+        </vs-card>
         <div v-if="show">
             <p>{{description}}</p>
         </div>
-        <v-divider/>
     </div>  
 </template>
 
@@ -46,5 +49,10 @@ export default class InteractionInfo extends Vue{
 <style scoped>
 .inter{
     text-align: left;
+}
+
+p{
+    text-align: left;
+    font-size: 15px;
 }
 </style>

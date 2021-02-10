@@ -4,8 +4,6 @@
             Medication
             <v-btn elevation="2" class="addBtn" @click="addDrug(patient)">Add drug</v-btn>
         </v-card-title>
-        
-        <v-divider/>
         <drug-info-card v-for="(med, i) in medication" :key="i" :drug="med" :patient="pat_name"/>
         <v-card-text>
             
@@ -43,7 +41,7 @@ export default class MedicationCard extends Vue {
 
 
 .medicationCard{
-    height: 200px;
+    height: 450px;
     overflow-y: scroll;
 }
 .addBtn{

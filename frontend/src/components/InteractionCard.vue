@@ -3,7 +3,6 @@
         <v-card-title class="title">
             Interactions
         </v-card-title>
-        <v-divider/>
         <interaction-info v-for="(inter, i) in interactions" :key="i+1" :drugA="inter[0]" :drugB="inter[1]" :desc="inter[2]"/>
     </vs-card>
 </template>
@@ -39,7 +38,7 @@ export default class InteractionCard extends Vue {
 <style scoped>
 
 .interactionCard{
-    height: 250px;
+    height: 450px;
     width: 300px;
     overflow-y: scroll;
 }
