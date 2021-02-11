@@ -25,12 +25,6 @@ const routes: RouteConfig[] = [
     component: Patient,
   },
   {
-    path: '/patient/graph',
-    name: 'Patient-Graph',
-    component: GraphView,
-    meta: {transitionName: 'slide'}
-  },
-  {
     path: '/add_patient',
     name: 'AddPatient',
     component: AddPatient,

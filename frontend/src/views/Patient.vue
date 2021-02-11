@@ -1,25 +1,29 @@
 <template>
-    <div id="patient" >
-        <profile-header :fn='patient.first_name' :ln='patient.last_name'/>
-        <v-container>
-            <v-row>
-                <v-col cols="6">
-                    <patient-card :patient="patient"/>
-                </v-col>
-                <v-col cols="6">
-                    <medication-card :medication="patient.medication" :patient="patient"/>
-                </v-col>
-            </v-row>
-        </v-container>
-        <button @click='seeGraph()'>Click to see graph</button>
+    <div id="patient">
+        <div id="header">
+            <h1 class="name">{{patient.first_name}} {{patient.last_name}}</h1>
+            <div class="patients">
+                <v-btn elevation="2" color="cyan" class="button" @click="overview">Patients</v-btn>
+            </div>
+            <div class="tabs">
+                <button @click="toggle()">{{text}}</button>
+            </div>
+        </div>
+        <transition name="bounce">
+            <div id="profile" v-if="profile">
+                <profile :patient="patient"/>
+            </div>
+        </transition>
+        <transition name="bounce">
+            <div id="interactions" v-if="!profile">
+                <interactions :patient="patient"/>
+            </div>
+        </transition>
     </div>
 </template>
 <script lang="ts">
-import MedicationCard from '../components/MedicationCard.vue';
-import ProfileHeader from '../components/ProfileHeader.vue'
-import InteractionCard from '../components/InteractionCard.vue';
-import PatientGraph from '../components/PatientGraph.vue';
-import PatientCard from '../components/PatientCard.vue'
+import Profile from '../components/Profile.vue'
+import Interactions from '../components/Interactions.vue'
 import router from "../router"
 import { Component, Vue } from 'vue-property-decorator';
 import HttpService from '../service';
@@ -28,11 +32,8 @@ const service = new HttpService();
 
 @Component({
     components: {
-        MedicationCard,
-        InteractionCard,
-        PatientCard,
-        PatientGraph,
-        ProfileHeader,
+        Profile,
+        Interactions,
     },
     props: ['patient'],
 })
@@ -40,7 +41,10 @@ const service = new HttpService();
 
 export default class Patient extends Vue {
     patient: any =  this.$route.params.pat;
-    name = this.patient.first_name + "_" + this.patient.last_name
+    text = "Interactions"
+
+    interactions = false
+    profile = true
 
     overview(){
         router.push("/")
@@ -49,9 +53,69 @@ export default class Patient extends Vue {
         var pat = this.patient
         router.push({name: 'Patient-Graph', params: {pat}})
     }
+    toggle(){
+        this.profile = !this.profile
+        if(this.profile){
+            this.text="Interactions"
+        } else{
+            this.text = "Profile"
+        }
+    }
 }
 </script>
 
 <style scoped>
+
+#header{
+    padding: 52px;
+    color: white;
+    font-size: 16px;
+    background-color: #2e6dff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 70px;
+}
+.patients{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.button{
+    padding: 15px 32px;
+    text-align: center;
+    margin: 13px 12px;
+    border: none;
+}
+
+.bounce-enter-active {
+    animation: bounce-in .5s;
+}
+
+.bounce-leave-active{
+    animation: bounce-in .5s reverse;
+}
+
+@keyframes bounce-in{
+    0%{
+        transform: scale(0);
+    }
+
+    50%{
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.tabs{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 40px 15px;
+}
+.tabs button{
+    border-style:double;
+}
 
 </style>

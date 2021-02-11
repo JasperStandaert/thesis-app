@@ -1,21 +1,17 @@
 <template>
     <div class="navbar">
-        <h1 class="name">{{first_name}} {{last_name}}</h1>
+        <h1 class="name">{{patient.first_name}} {{patient.last_name}}</h1>
         <div class="patients">
             <v-btn elevation="2" color="cyan" class="button" @click="overview">Patients</v-btn>
+            <div class="tabs">
+                <vs-tabs color="accent" alignment="left">
+                   <v-tab v-for="tab in tabs" :key="tab.id" :to="tab.route">
+                       {{tab.name}}
+                   </v-tab>
+                </vs-tabs>
+            </div>
         </div>
-        <div class="tabs">
-            <vs-tabs alignment="right">
-                <vs-tab label="Patient profile">
-                    <div>
-                    </div>
-                </vs-tab>
-                <vs-tab label="Interaction graph">
-                    <div>
-                    </div>
-                </vs-tab>
-            </vs-tabs>
-        </div>
+        
     </div>
 </template>
 
@@ -29,12 +25,22 @@ import FixedHeader from 'vue-fixed-header'
         FixedHeader
 
     },
-    props: ['fn', 'ln']
+    props: ['patient']
 })
 
 export default class ProfileHeader extends Vue{
-    first_name = this.$props.fn
-    last_name = this.$props.ln
+    patient: any = this.$props.patient
+    name = this.patient.first_name + '_' + this.patient.last_name
+
+    tabs = [
+        {id: 1, name: "Patient profile", route: function(patient: any){
+            var pat = patient
+            router.push({name: 'Patient', params: {patient}})
+        }},
+        {id: 2, name: "Interaction Graph", route: function(){
+            router.push("/")
+        }}
+    ]
 
     overview(){
         router.push("/")
@@ -45,7 +51,7 @@ export default class ProfileHeader extends Vue{
 <style scoped>
 
 .navbar{
-    padding: 20px;
+    padding: 52px;
     color: white;
     font-size: 16px;
     background-color: #2e6dff;

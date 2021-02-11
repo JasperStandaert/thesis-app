@@ -32,7 +32,7 @@ export default class PatientGraph extends Vue {
   edges: any = []
     options: any = {
       autoResize: true,
-      height: '280px',
+      height: '370px',
       width: '725px',
     nodes: {
       borderWidth: 2,
@@ -49,7 +49,7 @@ export default class PatientGraph extends Vue {
       } 
     },
     layout: {
-      randomSeed: 2.5,
+      randomSeed: 2.554,
     }
   }
 
@@ -72,11 +72,11 @@ export default class PatientGraph extends Vue {
   justify-content: flex-start;
   display: flex;
   padding: 10px;
-  height: 300px;
+  height: 650px;
 }
 
 .patientGraph{
-  height: 400px;
+  height: 500px;
 }
 
 </style>

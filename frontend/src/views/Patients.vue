@@ -2,8 +2,8 @@
     <div id="patientOverview">
         <program-header/>
         <div class="content">
+             <v-btn elevation="2" class="addBtn" @click="addPatient()">Add a new patient</v-btn>
             <PatientHeader class='patient' v-for="(patient, i) in patients" :key="i+1" :patient='patient'/>
-            <v-btn elevation="2" @click="addPatient()">Add a new patient</v-btn>
         </div>
     </div>
 </template>
@@ -54,5 +54,9 @@ export default class Patients extends Vue {
 </script>
 
 <style scoped>
+
+.addBtn{
+    margin: 10px 10px;
+}
 
 </style>

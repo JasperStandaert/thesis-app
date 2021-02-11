@@ -8,6 +8,7 @@
                 <v-card-text>
                     <p>Age: {{patient.age}}</p>
                     <p>Number of drugs: {{patient.medication.length}}</p>
+                    <p>Gender: {{patient.gender}}</p>
                 </v-card-text>
                 <v-actions>
                     <v-btn elevation="2" @click="remove(patient)">Remove this patient</v-btn>
