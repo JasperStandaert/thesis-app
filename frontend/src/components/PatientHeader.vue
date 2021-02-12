@@ -64,4 +64,9 @@ h1{
     font-size: 24px;
 }
 
+#patient{
+    text-align: left;
+    align-content: center;
+}
+
 </style>

@@ -11,7 +11,6 @@
                 </vs-tabs>
             </div>
         </div>
-        
     </div>
 </template>
 

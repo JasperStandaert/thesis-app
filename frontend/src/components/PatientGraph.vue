@@ -36,17 +36,23 @@ export default class PatientGraph extends Vue {
       width: '725px',
     nodes: {
       borderWidth: 2,
+      size: 50,
+      color: '#2e6dff'
+    },
+    font: {
+      size: 16,
+      color: '#ffffff'
     },
     edges: {
-      width: 5,
-      selectionWidth: 9,
-      length: 300,
+      width: 8,
+      selectionWidth: 10,
+      length: 200,
     },
     physics: {
       enabled: true,
       stabilization: {
         iterations: 5,    
-      } 
+      },
     },
     layout: {
       randomSeed: 2.554,

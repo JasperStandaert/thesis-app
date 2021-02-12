@@ -6,7 +6,7 @@
                 <v-btn elevation="2" color="cyan" class="button" @click="overview">Patients</v-btn>
             </div>
             <div class="tabs">
-                <button @click="toggle()">{{text}}</button>
+                <v-btn @click="toggle()">{{text}}</v-btn>
             </div>
         </div>
         <transition name="bounce">
@@ -80,10 +80,10 @@ export default class Patient extends Vue {
     left: 0;
 }
 .button{
-    padding: 15px 32px;
-    text-align: center;
-    margin: 13px 12px;
-    border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 40px 15px;;
 }
 
 .bounce-enter-active {
@@ -113,9 +113,6 @@ export default class Patient extends Vue {
     top: 0;
     right: 0;
     margin: 40px 15px;
-}
-.tabs button{
-    border-style:double;
 }
 
 </style>
