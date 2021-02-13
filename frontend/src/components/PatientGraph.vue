@@ -1,4 +1,22 @@
 <template>
+  <vs-card>
+    <v-card-title>
+      Interaction Graph
+    </v-card-title>
+    <v-card-content>
+      <div class="wrapper">
+        <network
+          class="network"
+          ref="network"
+          :edges="edges"
+          :nodes="nodes"
+          :options="options"
+          @select-edge="selectedInteraction()">
+        </network>
+      </div>
+    </v-card-content>
+  </vs-card>
+<!--
   <vs-card class="patientGraph">
     <v-card-title>
       Medical information visualized
@@ -6,9 +24,11 @@
     <v-card-text>
     </v-card-text>
     <div class="container">
-      <network :nodes="nodes" :edges="edges" :options="options"></network>
+      <network class="network" ref="network" :nodes="nodes" :edges="edges" :options="options" @select-edge="selectedInteraction()"></network>
     </div>
   </vs-card>
+-->
+
 </template>
 
 
@@ -27,21 +47,30 @@ const service = new HttpService();
 export default class PatientGraph extends Vue {
   patientName = this.$props.patient
 
+
   selected: any = null
   nodes: any = []
   edges: any = []
     options: any = {
       autoResize: true,
-      height: '370px',
-      width: '725px',
     nodes: {
       borderWidth: 2,
-      size: 50,
-      color: '#2e6dff'
-    },
-    font: {
-      size: 16,
-      color: '#ffffff'
+      size: 24,
+      color: {
+        border: 'grey',
+        highlight: {
+          border: 'black',
+          background: '#2e6dff',
+        },
+        hover: {
+          border: 'orange',
+          background: 'grey',
+        }
+      },
+      font: {
+        size: 16,
+        color: '#ffffff'
+      }
     },
     edges: {
       width: 8,
@@ -59,7 +88,6 @@ export default class PatientGraph extends Vue {
     }
   }
 
-
   mounted(){
     service.createGraph(this.patientName).then( (response) =>{
       if (response.status == 200){
@@ -70,15 +98,29 @@ export default class PatientGraph extends Vue {
       console.log(error)
     });
   }
+
+  selectedInteraction(edge: any){
+    console.log("Edge selected: " + edge.from)
+  }
 }
 </script>
 <style scoped>
 
+.wrapper{
+  padding: 20px 50px;
+  text-align: center;
+}
+
 .container{
-  justify-content: flex-start;
-  display: flex;
-  padding: 10px;
-  height: 650px;
+  padding: 20px 50px;
+  text-align: center;
+}
+
+.network{
+  height: 450px;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  margin: 5px 0;
 }
 
 .patientGraph{
