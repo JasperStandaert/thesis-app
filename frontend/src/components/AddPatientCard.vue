@@ -32,23 +32,20 @@
                                 </md-field>
                             </div>
                             <div class="md-layout-item md-small-size-100">
-                                <md-field>
-                                    <p for="gender">Gender:</p>
-                                    <v-select name="gender" id="gender" v-model="patient.gender" :options='options'></v-select>
-                                </md-field>
+                                    <label for="gender">Gender:</label>
+                                    <multi-select name="gender" id="gender" v-model="patient.gender" :options='options'></multi-select>
                             </div>
                         </div>
                         <div class="md-layout md-gutter">
-                            <md-field>
-                                <p for="medication">Medication:</p>
+                                <label for="medication">Medication:</label>
                                 <multi-select
                                     id="medication"
+                                    name
                                     v-model="patient.medication"
                                     :options="meds"
                                     :multiple="true"
                                     placeholder="Search for medication">
                                 </multi-select>
-                            </md-field>
                         </div>
                      </form>
                 </div>
@@ -121,6 +118,7 @@ export default class AddPatientCard extends Vue {
 }
 </script>
 
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style scoped>
 
 v-card-actions{

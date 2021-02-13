@@ -9,7 +9,7 @@
                 <v-btn @click="toggle()">{{text}}</v-btn>
             </div>
         </div>
-        <transition name="bounce">
+        <transition name="fade">
             <div id="profile" v-if="profile">
                 <profile :patient="patient"/>
             </div>

@@ -8,21 +8,17 @@
         <div class="content">
             <vs-card>
                 <v-card-content>
-                    <form>
-                        <md-field>
-                            <p for="medication">Medication:</p><br>
-                            <multi-select
-                                id="medication"
-                                class="medication"
-                                v-model="medication"
-                                :options="items"
-                                placeholder="Add a medication">
-                            </multi-select>
-                        </md-field>
-                        <md-button class="md-raised md-primary" style="align-items: center; margin: 20px 0 0 0;" :value="this.buttonVal" v-on:click="addDrug(name, patient, medication)">
-                            Add Drug
-                        </md-button>
-                    </form>
+                    <label for="medication">Medication:</label>
+                    <multi-select
+                        id="medication"
+                        class="medication"
+                        v-model="medication"
+                        :options="items"
+                        placeholder="Add a medication">
+                    </multi-select>
+                    <md-button class="md-raised md-primary" style="align-items: center; margin: 20px 0 0 0;" :value="this.buttonVal" v-on:click="addDrug(name, patient, medication)">
+                        Add Drug
+                    </md-button>
                 </v-card-content>
             </vs-card>
         </div>
@@ -86,6 +82,7 @@ export default class AddDrug extends Vue{
 }
 </script>
 
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style scoped>
 
 .header{

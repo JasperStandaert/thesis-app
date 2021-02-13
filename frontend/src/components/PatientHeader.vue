@@ -10,10 +10,10 @@
                     <p>Number of drugs: {{patient.medication.length}}</p>
                     <p>Gender: {{patient.gender}}</p>
                 </v-card-text>
-                <v-actions>
-                    <v-btn elevation="2" @click="remove(patient)">Remove this patient</v-btn>
-                </v-actions>
             </div>
+            <v-actions>
+                <v-btn elevation="2" @click="remove(patient)">Remove this patient</v-btn>
+            </v-actions>
         </vs-card>  
     </div>
 </template>
