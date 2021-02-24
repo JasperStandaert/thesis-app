@@ -1,6 +1,6 @@
 <template>
     <div class="header">
-        <h1>Patients Overview</h1>
+        <h1>Drug-drug interactions</h1>
     </div>
 </template>
 

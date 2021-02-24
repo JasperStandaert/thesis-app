@@ -1,24 +1,23 @@
 <template>
     <div id="patient">
         <div id="header">
-            <h1 class="name">{{patient.first_name}} {{patient.last_name}}</h1>
-            <div class="patients">
-                <v-btn elevation="2" color="cyan" class="button" @click="overview">Patients</v-btn>
+                <h1 class="name">{{patient.first_name}} {{patient.last_name}}</h1>
+                 <div class="patients">
+                    <v-btn elevation="2" color="cyan" class="button" @click="overview">Patients</v-btn>
+                </div>
             </div>
-            <div class="tabs">
-                <v-btn @click="toggle()">{{text}}</v-btn>
-            </div>
-        </div>
-        <transition name="fade">
-            <div id="profile" v-if="profile">
+        <div id="section1">
+            <a href="#section2" id="downArrow"><span class="material-icons">arrow_downward</span></a>
+            <div id="profile">
                 <profile :patient="patient"/>
             </div>
-        </transition>
-        <transition name="bounce">
-            <div id="interactions" v-if="!profile">
+        </div>
+        <div id="section2">
+            <a href="#header"><span class="material-icons">arrow_upward</span></a>
+            <div id="interactions">
                 <interactions :patient="patient"/>
             </div>
-        </transition>
+        </div>
     </div>
 </template>
 <script lang="ts">
@@ -41,7 +40,6 @@ const service = new HttpService();
 
 export default class Patient extends Vue {
     patient: any =  this.$route.params.pat;
-    text = "Interactions"
 
     interactions = false
     profile = true
@@ -49,30 +47,26 @@ export default class Patient extends Vue {
     overview(){
         router.push("/")
     }
-    seeGraph(){
-        var pat = this.patient
-        router.push({name: 'Patient-Graph', params: {pat}})
-    }
-    toggle(){
-        this.profile = !this.profile
-        if(this.profile){
-            this.text="Interactions"
-        } else{
-            this.text = "Profile"
-        }
-    }
 }
 </script>
 
 <style scoped>
 
+.material-icons{
+    position: relative;
+    left: 650px;
+    top: 10px;
+}
 #header{
+    position: relative;
+    width: 100%;
     padding: 52px;
     color: white;
     font-size: 16px;
     background-color: #2e6dff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     height: 70px;
+    z-index: 999;
 }
 .patients{
     position: absolute;
@@ -85,34 +79,21 @@ export default class Patient extends Vue {
     left: 0;
     margin: 40px 15px;;
 }
-
-.bounce-enter-active {
-    animation: bounce-in .5s;
+html{
+    scroll-behavior: smooth;
+}
+#section1{
+    position: relative;
 }
 
-.bounce-leave-active{
-    animation: bounce-in .5s reverse;
+#section2{
+    position: relative;
 }
-
-@keyframes bounce-in{
-    0%{
-        transform: scale(0);
-    }
-
-    50%{
-        transform: scale(1.2);
-    }
-
-    100% {
-        transform: scale(1);
-    }
+#profile{
+    height: 750px;
 }
-
-.tabs{
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 40px 15px;
+#interactions{
+    height: 750px;
 }
 
 </style>

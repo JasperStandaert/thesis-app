@@ -1,5 +1,6 @@
 <template>
     <div class='drugBar' v-if="!isRemoved" >
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <vs-card>
             <v-title>
                 <h3>
@@ -20,7 +21,7 @@
             </v-text>
             <v-card-actions>
                 <button @click="remove(drug.Name, pat)" class="remove">
-                    <img src="../assets/remove.svg" />
+                    <span class="material-icons">remove_circle</span>
                 </button>
             </v-card-actions>
         </vs-card>
@@ -74,6 +75,15 @@ export default class DrugInfoCard extends Vue{
 .remove{
     position: relative;
     left: 480px;
+    color: red;
+    top: -10px;
 }
-
+.material-icons{
+    font-size: 30px;
+}
+.material-icons:hover{
+    background-color: black;
+    border-radius: 30px;
+    border-width: 2px;;
+}
 </style>

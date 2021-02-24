@@ -11,13 +11,16 @@ import 'vue-material/dist/vue-material.min.css';
 import { Network } from "vue-vis-network";
 import "vis-network/styles/vis-network.css";
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import '@mdi/font/css/materialdesignicons.css'
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css'
+import VueVega from 'vue-vega'
 
 import './assets/style/style.scss'
 
 Vue.component('v-select', vSelect)
 Vue.component('network', Network)
+Vue.use(VueVega)
 Vue.use(VueMaterial);
 Vue.use(Vuetify);
 Vue.use(Vuesax);

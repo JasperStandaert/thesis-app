@@ -2,12 +2,12 @@
     <div>
         <vs-card class="patientcard">
             <div>
-                <img src="../assets/face.svg" alt="Profile picture" id="profile">
+                <img src="../assets/face.svg" style="height: 150px; width: 125px;" alt="Profile picture" id="profile">
             </div>
-            <v-card-title>
+            <v-card-title class="my-title">
                 {{patient.first_name}} {{patient.last_name}}
             </v-card-title>
-            <v-card-text>
+            <v-card-text class="my-content">
                 <div class="patText">
                     Age: {{patient.age}}<br>
                     Gender: {{patient.gender}}
@@ -34,7 +34,7 @@ export default class PatientCard extends Vue{
 
 <style scoped>
 .patientcard{
-    height: 200px;
+    height: 95vh;
 }
 
 img{
@@ -44,5 +44,14 @@ img{
 
 .patText{
     text-align: left;
+}
+
+.my-title{
+    position: relative;
+    top: 50px;
+}
+.my-content{
+    position: relative;
+    top: 50px;
 }
 </style>

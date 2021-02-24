@@ -8,10 +8,10 @@
                     <img v-else  @click="show = !show" src="../assets/collapse.svg" alt="Collapse">
                 </p>
             </v-card-title>
+            <div v-if="show">
+                <p>{{description}}</p>
+            </div>
         </vs-card>
-        <div v-if="show">
-            <p>{{description}}</p>
-        </div>
     </div>  
 </template>
 
@@ -25,13 +25,14 @@ const service = new HttpService();
         components: {
 
         },
-        props: ['drugA', 'drugB']
+        props: ['drugA', 'drugB', 'active']
     })
 
 export default class InteractionInfo extends Vue{
     drugA = this.$props.drugA
     drugB = this.$props.drugB
     description: string = ""
+    active = this.$props.active
     show = false
 
     mounted(){
@@ -42,6 +43,10 @@ export default class InteractionInfo extends Vue{
         }).catch((error)=> {
 
         });
+        Vue.nextTick();
+        if((this.drugA === this.active[0] && this.drugB === this.active[1]) || (this.drugB === this.active[0] && this.drugA === this.active[1])){
+            this.show = true
+        }
     }
 }
 </script>

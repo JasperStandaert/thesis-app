@@ -3,13 +3,6 @@
         <h1 class="name">{{patient.first_name}} {{patient.last_name}}</h1>
         <div class="patients">
             <v-btn elevation="2" color="cyan" class="button" @click="overview">Patients</v-btn>
-            <div class="tabs">
-                <vs-tabs color="accent" alignment="left">
-                   <v-tab v-for="tab in tabs" :key="tab.id" :to="tab.route">
-                       {{tab.name}}
-                   </v-tab>
-                </vs-tabs>
-            </div>
         </div>
     </div>
 </template>
@@ -31,15 +24,6 @@ export default class ProfileHeader extends Vue{
     patient: any = this.$props.patient
     name = this.patient.first_name + '_' + this.patient.last_name
 
-    tabs = [
-        {id: 1, name: "Patient profile", route: function(patient: any){
-            var pat = patient
-            router.push({name: 'Patient', params: {patient}})
-        }},
-        {id: 2, name: "Interaction Graph", route: function(){
-            router.push("/")
-        }}
-    ]
 
     overview(){
         router.push("/")
@@ -75,12 +59,5 @@ export default class ProfileHeader extends Vue{
     border: none;
 }
 
-fixed-header{
-    background-color: #2e6dff;
-}
-.tabs{
-    position: relative;
-    top: 0;
-}
 
 </style>
