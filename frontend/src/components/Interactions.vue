@@ -1,23 +1,26 @@
 <template>
-        <vs-card>
-        <v-container>
+    <v-container>
             <v-row>
                 <v-col cols="7">
-                    <h1>Interaction Graph</h1>
-                    <p> Active interaction: {{activeInteraction}}</p>
-                    <graph :patient="name" v-on:childToParent="clickedInteraction"/> 
+                    <vs-card>
+                        <v-card-title>Interaction Graph</v-card-title>
+                        <v-card-content>
+                            <graph :patient="name" v-on:childToParent="clickedInteraction"/>
+                        </v-card-content>
+                    </vs-card>
                 </v-col>
                 <v-col cols="5">
                     <vs-card outlined class="interactionCard">
                         <v-card-title class="title">
-                            Interactions
+                        Interactions
                         </v-card-title>
-                        <interaction-info v-for="(inter, i) in interactions" :key="i+1" :drugA="inter[0]" :drugB="inter[1]" :active="activeInteraction"/>
-                    </vs-card>
-                </v-col>
-            </v-row>
-        </v-container>
-        </vs-card>
+                        <v-card-content>
+                            <interaction-info v-for="(inter, i) in interactions" :key="i+1" :drugA="inter[0]" :drugB="inter[1]" :active="activeInteraction"/>
+                        </v-card-content>
+                </vs-card>
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator'
@@ -60,3 +63,7 @@ export default class Interactions extends Vue{
     
 }
 </script>
+
+<style scoped>
+
+</style>

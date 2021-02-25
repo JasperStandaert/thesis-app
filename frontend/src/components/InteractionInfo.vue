@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
+import {Component, Vue, Watch} from 'vue-property-decorator'
 import HttpService from '../service'
 
 const service = new HttpService();
@@ -32,7 +32,7 @@ export default class InteractionInfo extends Vue{
     drugA = this.$props.drugA
     drugB = this.$props.drugB
     description: string = ""
-    active = this.$props.active
+    active: string = this.$props.active
     show = false
 
     mounted(){
@@ -47,6 +47,17 @@ export default class InteractionInfo extends Vue{
         if((this.drugA === this.active[0] && this.drugB === this.active[1]) || (this.drugB === this.active[0] && this.drugA === this.active[1])){
             this.show = true
         }
+    }
+
+    @Watch('active')
+    onPropertyChanged(value: string, oldValue: string){
+        if((this.drugA === value[0] && this.drugB === value[1]) || (this.drugB === value[0] && this.drugA === value[1])){
+            this.show = true
+        }
+         if((this.drugA === oldValue[0] && this.drugB === oldValue[1]) || (this.drugB === oldValue[0] && this.drugA === oldValue[1])){
+            this.show = false
+        }
+
     }
 }
 </script>

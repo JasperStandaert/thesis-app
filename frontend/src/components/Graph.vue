@@ -53,8 +53,8 @@ export default class Graph extends Vue{
     data = {nodes: this.nodes, edges: this.edges}
      options={
     autoResize: true,
-    width: '600px',
-    height: '500px',
+    width: '100%',
+    height: '100%',
     nodes:{
       shape: 'circle',
       color: {
@@ -111,8 +111,7 @@ export default class Graph extends Vue{
         //Hier De data inladen
         this.container = document.getElementById("mynetwork")
         this.network = new Network(this.container, netData, this.options)
-        var scaleOptions = {scale: 15}
-        this.network.moveTo(scaleOptions)
+        this.network.fit()
         this.network.on('selectEdge', (params) =>{
           var edgeId = params.edges[0]
           var edge = this.network.body.edges[edgeId]
@@ -129,10 +128,11 @@ export default class Graph extends Vue{
 <style scoped>
 
 #mynetwork{
-height: 100%;
+  height: 86%;
   width: 100%;
   margin: 5px 0;
 }
+
 
 .my-legend .legend-title {
     text-align: left;
@@ -167,20 +167,13 @@ height: 100%;
     margin: 10px 25px 0px 0px;
   }
 .wrapper{
-  height: 620px;
+  height: 575px;
   width: 100%;
   text-align: center;
+  border-radius: 14px;
+  border: 1px solid lightslategray;
+  margin-top: 10px;
 }
 
-#mynetwork{
-  height: 100%;
-  width: 100%;
-  margin: 5px 0;
-}
-
-
-.patientGraph{
-  height: 500px;
-}
 
 </style>
