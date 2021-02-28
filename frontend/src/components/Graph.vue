@@ -63,7 +63,10 @@ export default class Graph extends Vue{
         highlight: {
           background: '#2e6dff'
         },
-      }
+      },
+      font: {
+        color: 'white',
+      },
     },
     edges: {
       width: 15,
@@ -76,13 +79,13 @@ export default class Graph extends Vue{
       }
     },
     layout: {
-      randomSeed: 2.554,
+      randomSeed: 2.5,
       improvedLayout: true,
     }
   }
 
-  network: any = null
   container: any = null
+  network: any = null
 
 
   getMedicationFromEdge(edge: any){
@@ -111,17 +114,19 @@ export default class Graph extends Vue{
         //Hier De data inladen
         this.container = document.getElementById("mynetwork")
         this.network = new Network(this.container, netData, this.options)
-        this.network.fit()
         this.network.on('selectEdge', (params) =>{
           var edgeId = params.edges[0]
           var edge = this.network.body.edges[edgeId]
           this.getMedicationFromEdge(edge)
         })
+
+        this.network.once('stabilized', () => {
+          var scaleOption = { scale : 1.65}
+          this.network.moveTo(scaleOption);
+        })
       }
     })
   }
-
-
 }
 </script>
 
@@ -170,8 +175,6 @@ export default class Graph extends Vue{
   height: 575px;
   width: 100%;
   text-align: center;
-  border-radius: 14px;
-  border: 1px solid lightslategray;
   margin-top: 10px;
 }
 
