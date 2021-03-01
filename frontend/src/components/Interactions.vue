@@ -65,5 +65,8 @@ export default class Interactions extends Vue{
 </script>
 
 <style scoped>
+v-container{
+    margin-top: 200px;
+}
 
 </style>

@@ -7,7 +7,9 @@
                 </div>
             </div>
         <div id="section1">
-            <a href="#section2" id="downArrow"><span class="material-icons">arrow_downward</span></a>
+            <div id="arrow">
+                <a href="#section2" id="downArrow"><span class="material-icons">arrow_downward</span></a>
+            </div>
             <div id="profile">
                 <profile :patient="patient"/>
             </div>
@@ -51,7 +53,10 @@ export default class Patient extends Vue {
 </script>
 
 <style scoped>
+#arrow{
+    position: relative;
 
+}
 .material-icons{
     position: relative;
     left: 650px;
@@ -88,9 +93,11 @@ html{
 
 #section2{
     position: relative;
+    margin-top: 320px;
 }
 #profile{
     height: 750px;
+    margin-top: 10px;
 }
 #interactions{
     height: 750px;

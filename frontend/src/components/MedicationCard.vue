@@ -42,6 +42,7 @@ export default class MedicationCard extends Vue {
 
 .medicationCard{
     height: 95vh;
+    margin-top: 75px;
 }
 .addBtn{
     position: relative;

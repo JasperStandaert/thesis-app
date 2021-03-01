@@ -1,15 +1,11 @@
 <template>
     <div>
-        <v-container>
-            <v-row>
-                <v-col cols="6">
-                    <patient-card :patient="patient"/>
-                </v-col>
-                <v-col cols="6">
-                    <medication-card :medication="patient.medication" :patient="patient"/>
-                </v-col>
-            </v-row>
-        </v-container>
+        <vs-card>
+            <v-card-content>
+                <patient-card :patient="patient"/>
+                <medication-card :medication="patient.medication" :patient="patient"/>
+            </v-card-content>
+        </vs-card>
     </div>
 </template>
 
@@ -32,5 +28,9 @@ export default class Profile extends Vue{
 </script>
 
 <style scoped>
+
+medication-card{
+    margin-top: 200px;
+}
 
 </style>

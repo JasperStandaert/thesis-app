@@ -1,19 +1,17 @@
 <template>
     <div>
-        <vs-card class="patientcard">
-            <div>
-                <img src="../assets/face.svg" style="height: 150px; width: 125px;" alt="Profile picture" id="profile">
-            </div>
-            <v-card-title class="my-title">
+        <div>
+            <img src="../assets/face.svg" style="height: 150px; width: 125px;" alt="Profile picture" id="profile">
+        </div>
+            <h1>
                 {{patient.first_name}} {{patient.last_name}}
-            </v-card-title>
-            <v-card-text class="my-content">
-                <div class="patText">
-                    Age: {{patient.age}}<br>
-                    Gender: {{patient.gender}}
-                </div>
-            </v-card-text>
-        </vs-card>
+            </h1>
+        <div class="my-content">
+            <div class="patText">
+                <p><h3>Age:</h3> {{patient.age}}</p>
+                <p><h3>Gender: </h3>{{patient.gender}}</p>
+            </div>
+        </div>
     </div>
 </template>
 
