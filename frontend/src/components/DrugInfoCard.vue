@@ -3,14 +3,17 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <vs-card>
             <v-title>
-                <h3>
+                <h3 class="title">
                     {{drug.Name}}
                     <img v-if="!show" src="../assets/expand.svg" alt="expand" @click="show = !show">
                     <img v-else src="../assets/collapse.svg" alt="Collapse" @click="show = !show">
+                    <button @click="remove(drug.Name, pat)" class="remove">
+                        <span class="material-icons">remove_circle</span>
+                    </button>
                 </h3>
             </v-title>
             <v-text>
-                <div v-if="show">
+                <div class="content" v-if="show">
                     <h3>Description: </h3>
                     <p>{{drug.Description}}</p>
                     <h3>Indication: </h3>
@@ -20,9 +23,6 @@
                 </div>
             </v-text>
             <v-card-actions>
-                <button @click="remove(drug.Name, pat)" class="remove">
-                    <span class="material-icons">remove_circle</span>
-                </button>
             </v-card-actions>
         </vs-card>
     </div>
@@ -63,6 +63,13 @@ export default class DrugInfoCard extends Vue{
 
 <style scoped>
 
+.title{
+    text-align: center;
+}
+.content{
+    text-align: left
+}
+
 #drugBar{
     border-width: 2px;
     border-style: solid;
@@ -74,9 +81,8 @@ export default class DrugInfoCard extends Vue{
 }
 .remove{
     position: relative;
-    left: 480px;
+    top: 10px;
     color: red;
-    top: -10px;
 }
 .material-icons{
     font-size: 30px;

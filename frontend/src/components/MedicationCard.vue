@@ -46,7 +46,7 @@ export default class MedicationCard extends Vue {
 }
 .addBtn{
     position: relative;
-    left: 300px;
+    left: 20px;
     text-align: center;
 }
-</style>
+</style>        

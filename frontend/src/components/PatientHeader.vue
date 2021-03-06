@@ -1,20 +1,20 @@
 <template>
     <div class="patientHeader" >
-        <vs-card v-if="show">
-            <div id="patient" v-on:click="patientRoute(($event, patient))">
-                <v-card-title>
-                    <h1>{{patient.first_name}} {{patient.last_name}}</h1>
-                </v-card-title>
-                <v-card-text>
-                    <p>Age: {{patient.age}}</p>
-                    <p>Number of drugs: {{patient.medication.length}}</p>
-                    <p>Gender: {{patient.gender}}</p>
-                </v-card-text>
-            </div>
-            <v-actions>
-                <v-btn elevation="2" @click="remove(patient)">Remove this patient</v-btn>
-            </v-actions>
-        </vs-card>  
+            <vs-card v-if="show">
+                <div id="patient" v-on:click="patientRoute(($event, patient))">
+                    <v-card-title>
+                        <h1>{{patient.first_name}} {{patient.last_name}}</h1>
+                        <button @click="remove(patient)" class="remove">
+                            <span class="material-icons">remove_circle</span>
+                        </button>
+                    </v-card-title>               
+                    <v-card-text>
+                        <p>Age: {{patient.age}}</p>
+                        <p>Number of drugs: {{patient.medication.length}}</p>
+                        <p>Gender: {{patient.gender}}</p>
+                    </v-card-text>
+                </div>
+            </vs-card> 
     </div>
 </template>
 
@@ -67,6 +67,25 @@ h1{
 #patient{
     text-align: left;
     align-content: center;
+}
+
+.remove{
+    position: relative;
+    color: red;
+    top: 5px;
+    left: 15px;
+}
+.material-icons{
+    font-size: 30px;
+}
+.material-icons:hover{
+    background-color: black;
+    border-radius: 28px;
+    border-width: 2px;;
+}
+
+.patientHeader:hover{
+    box-shadow: 5px 10px 50px 10px #888888;
 }
 
 </style>

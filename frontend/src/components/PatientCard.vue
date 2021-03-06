@@ -41,7 +41,7 @@ img{
 }
 
 .patText{
-    text-align: left;
+    align-content: center;
 }
 
 .my-title{

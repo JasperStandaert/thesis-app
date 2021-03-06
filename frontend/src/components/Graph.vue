@@ -69,8 +69,9 @@ export default class Graph extends Vue{
       },
     },
     edges: {
-      width: 15,
+      width: 12,
       length: 175,
+      selectionWidth: 14,
     },
     physics: {
       enabled: true,
@@ -103,6 +104,16 @@ export default class Graph extends Vue{
       this.$emit("childToParent", interaction)
     }
   }
+
+  getMedicationFromNode(node: any){
+    var med = ""
+    for(var i = 0; i < this.nodes.length; i++){
+      if(this.nodes[i].id == node.options.id){
+        med = this.nodes[i].label
+      }
+    }
+    this.$emit('nodeToParent', med)
+  }
   mounted(){
 
     service.createGraph(this.patientName).then((response) =>{
@@ -119,10 +130,16 @@ export default class Graph extends Vue{
           var edge = this.network.body.edges[edgeId]
           this.getMedicationFromEdge(edge)
         })
+        this.network.on('selectNode', (params) =>{
+          var nodeId = params.nodes[0]
+          var node = this.network.body.nodes[nodeId]
+          this.getMedicationFromNode(node)
+        })
 
         this.network.once('stabilized', () => {
-          var scaleOption = { scale : 1.65}
+          var scaleOption = { scale : 1.5}
           this.network.moveTo(scaleOption);
+          this.network.fit()
         })
       }
     })

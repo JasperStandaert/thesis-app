@@ -25,7 +25,7 @@ const service = new HttpService();
         components: {
 
         },
-        props: ['drugA', 'drugB', 'active']
+        props: ['drugA', 'drugB', 'active', 'node']
     })
 
 export default class InteractionInfo extends Vue{
@@ -33,6 +33,7 @@ export default class InteractionInfo extends Vue{
     drugB = this.$props.drugB
     description: string = ""
     active: string = this.$props.active
+    node: string = this.$props.node
     show = false
 
     mounted(){
@@ -57,7 +58,16 @@ export default class InteractionInfo extends Vue{
          if((this.drugA === oldValue[0] && this.drugB === oldValue[1]) || (this.drugB === oldValue[0] && this.drugA === oldValue[1])){
             this.show = false
         }
+    }
 
+    @Watch('node')
+    onNodeChanged(value: string, oldValue: string){     
+        if(this.drugA === value[0] || this.drugB === value[0]){
+            this.show = true
+        }
+        if(this.drugA === oldValue[0] || this.drugB === oldValue[0]){
+            this.show = false
+        } 
     }
 }
 </script>

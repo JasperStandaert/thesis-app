@@ -5,7 +5,7 @@
                     <vs-card>
                         <v-card-title>Interaction Graph</v-card-title>
                         <v-card-content>
-                            <graph :patient="name" v-on:childToParent="clickedInteraction"/>
+                            <graph :patient="name" v-on:childToParent="clickedInteraction" v-on:nodeToParent="clickedNode"/>
                         </v-card-content>
                     </vs-card>
                 </v-col>
@@ -15,7 +15,7 @@
                         Interactions
                         </v-card-title>
                         <v-card-content>
-                            <interaction-info v-for="(inter, i) in interactions" :key="i+1" :drugA="inter[0]" :drugB="inter[1]" :active="activeInteraction"/>
+                            <interaction-info v-for="(inter, i) in interactions" :key="i+1" :drugA="inter[0]" :drugB="inter[1]" :active="activeInteraction" :node='activeNode'/>
                         </v-card-content>
                 </vs-card>
             </v-col>
@@ -44,6 +44,7 @@ export default class Interactions extends Vue{
     interactions: any = []
 
     activeInteraction = ['','']
+    activeNode = ""
 
     
     mounted(){
@@ -61,6 +62,9 @@ export default class Interactions extends Vue{
         this.activeInteraction = interaction
     }
     
+    clickedNode(node){
+        this.activeNode = node
+    }
 }
 </script>
 
