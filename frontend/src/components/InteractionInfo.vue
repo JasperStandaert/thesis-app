@@ -18,6 +18,7 @@
 <script lang="ts">
 import {Component, Vue, Watch} from 'vue-property-decorator'
 import HttpService from '../service'
+import store from '../store'
 
 const service = new HttpService();
 
@@ -25,15 +26,13 @@ const service = new HttpService();
         components: {
 
         },
-        props: ['drugA', 'drugB', 'active', 'node']
+        props: ['drugA', 'drugB']
     })
 
 export default class InteractionInfo extends Vue{
     drugA = this.$props.drugA
     drugB = this.$props.drugB
     description: string = ""
-    active: string = this.$props.active
-    node: string = this.$props.node
     show = false
 
     mounted(){
@@ -45,29 +44,26 @@ export default class InteractionInfo extends Vue{
 
         });
         Vue.nextTick();
-        if((this.drugA === this.active[0] && this.drugB === this.active[1]) || (this.drugB === this.active[0] && this.drugA === this.active[1])){
-            this.show = true
-        }
     }
 
-    @Watch('active')
-    onPropertyChanged(value: string, oldValue: string){
-        if((this.drugA === value[0] && this.drugB === value[1]) || (this.drugB === value[0] && this.drugA === value[1])){
+    @Watch(store.state.activeNode)
+    onNodeClick(){
+         if(this.drugA === store.state.activeNode || this.drugB === store.state.activeNode){
             this.show = true
         }
-         if((this.drugA === oldValue[0] && this.drugB === oldValue[1]) || (this.drugB === oldValue[0] && this.drugA === oldValue[1])){
-            this.show = false
-        }
+        console.log("Node gevonden")
     }
 
-    @Watch('node')
-    onNodeChanged(value: string, oldValue: string){     
-        if(this.drugA === value[0] || this.drugB === value[0]){
+    @Watch(store.getters.activeInteraction)
+    onInteractionClick(){
+         if(this.drugA === store.state.activeInteraction[0] || this.drugA === store.state.activeInteraction[1]){
             this.show = true
-        }
-        if(this.drugA === oldValue[0] || this.drugB === oldValue[0]){
+        } else if (this.drugB === store.state.activeInteraction[0] ||this.drugB === store.state.activeInteraction[1]){
+            this.show = true
+        } else{
             this.show = false
-        } 
+        }
+
     }
 }
 </script>

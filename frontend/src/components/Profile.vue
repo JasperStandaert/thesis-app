@@ -13,6 +13,7 @@
 import {Component, Vue} from 'vue-property-decorator'
 import MedicationCard from '../components/MedicationCard.vue'
 import PatientCard from '../components/PatientCard.vue'
+import store from '../store'
 
 @Component({
     components: {
@@ -22,7 +23,7 @@ import PatientCard from '../components/PatientCard.vue'
     props: ['patient']
 })
 export default class Profile extends Vue{
-    patient: any = this.$props.patient
+    patient = store.getters.patient
     
 }
 </script>

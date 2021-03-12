@@ -28,6 +28,7 @@ import Interactions from '../components/Interactions.vue'
 import router from "../router"
 import { Component, Vue } from 'vue-property-decorator';
 import HttpService from '../service';
+import store from '../store'
 
 const service = new HttpService();
 
@@ -41,7 +42,7 @@ const service = new HttpService();
 
 
 export default class Patient extends Vue {
-    patient: any =  this.$route.params.pat;
+    patient = store.getters.patient
 
     interactions = false
     profile = true

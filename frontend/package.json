@@ -42,7 +42,8 @@
     "vue2vis": "0.0.18",
     "vuesax": "^3.12.2",
     "vuetify": "^2.4.3",
-    "vuex": "^3.6.2"
+    "vuex": "^3.6.2",
+    "vuex-persistedstate": "^4.0.0-beta.3"
   },
   "devDependencies": {
     "@mdi/js": "^5.9.55",

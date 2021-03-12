@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default class HttpService {
 
-    public basepath = 'cors-anywhere.herokuapp.com/https://thesis-service.herokuapp.com/';
+    public basepath = 'https://thesis-service.herokuapp.com';
 
     public getPatients() {
         return axios.get(this.basepath + '/get_all_patients', {

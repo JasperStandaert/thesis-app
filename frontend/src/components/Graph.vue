@@ -23,6 +23,7 @@
 import {DataSet, Network} from 'vis-network/standalone'
 import {Component, Vue} from 'vue-property-decorator'
 import HttpService from '../service'
+import store from '../store'
 
 const service = new HttpService();
 
@@ -30,10 +31,8 @@ const service = new HttpService();
     components: {
 
     },
-    props: ['patient']
 })
 export default class Graph extends Vue{
-    patientName = this.$props.patient
 
     nodes = new DataSet([
         { id: 1, label: "Node 1" },
@@ -101,7 +100,7 @@ export default class Graph extends Vue{
         to = this.nodes[i].label
       }
       var interaction = [from, to]
-      this.$emit("childToParent", interaction)
+      store.commit('setActiveInteraction', interaction)
     }
   }
 
@@ -110,13 +109,13 @@ export default class Graph extends Vue{
     for(var i = 0; i < this.nodes.length; i++){
       if(this.nodes[i].id == node.options.id){
         med = this.nodes[i].label
+        store.commit('setActiveNode', med)
       }
     }
-    this.$emit('nodeToParent', med)
   }
   mounted(){
-
-    service.createGraph(this.patientName).then((response) =>{
+    var name = store.state.patient.first_name + '_' + store.state.patient.last_name
+    service.createGraph(name).then((response) =>{
       if(response.status = 200){
         this.nodes = response.data[0]
         this.edges = response.data[1]

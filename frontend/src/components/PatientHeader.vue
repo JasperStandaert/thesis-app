@@ -22,7 +22,7 @@
 import {Component, Vue} from 'vue-property-decorator';
 import router from '../router';
 import HttpService from '../service'
-
+import store from '../store'
 const service = new HttpService()
 
 @Component({
@@ -40,6 +40,7 @@ export default class PatientHeader extends Vue {
     public patientRoute(patient: any, e: any) {
         const pat: any = this.patient;
         router.push({name: 'Patient', params: { pat }});
+        store.commit('addPatient', patient)
     }
 
     remove(){

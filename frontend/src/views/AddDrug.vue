@@ -16,7 +16,8 @@
                         :options="items"
                         placeholder="Add a medication">
                     </multi-select>
-                    <md-button class="md-raised md-primary" style="align-items: center; margin: 20px 0 0 0;" :value="this.buttonVal" v-on:click="addDrug(name, patient, medication)">
+                    <p id='errorTag'></p>
+                    <md-button class="md-raised md-primary" style="align-items: center; margin: 20px 0 0 0;" v-on:click="addDrug(name, patient, medication)">
                         Add Drug
                     </md-button>
                 </v-card-content>
@@ -30,6 +31,7 @@ import {Component, Vue} from 'vue-property-decorator'
 import MultiSelect from 'vue-multiselect'
 import router from '../router'
 import HttpService from '../service'
+import store from '../store'
 
 const service = new HttpService();
 
@@ -39,41 +41,57 @@ const service = new HttpService();
     },
     props: ['patient']
 })
+
 export default class AddDrug extends Vue{
-    patient: any = this.$route.params.patient
+    patient = store.getters.patient
     name = this.patient.first_name + "_" + this.patient.last_name
-    medication: any = []
+    medication: string = ''
     items: any = []
     
     mounted(){
-        console.log(this.patient.first_name)
         service.getMedication().then((response) => {
-            if(response.status == 200){
-                for (var i = 0; i < response.data.length; i++){
+        if(response.status == 200){
+            for (var i = 0; i < response.data.length; i++){
                     this.items.push(response.data[i].Name)
                 }
             }
         }).catch((error) =>{
             console.log(error)
         });
+            
     }
 
-    addDrug(name: string, patient: any, med: any){
-        patient = this.patient
-        service.addDrug(name, med).then((response) =>{
-            if(response.status == 200){
-                this.patBack(name);
+    addDrug(name: string, patient: any, med: string){
+        var found = false
+        for(var i = 0; i < store.getters.medication.length; i++){
+            if(store.getters.medication[i].Name === med){
+                found = true
             }
-        }).catch((error) =>{
-            console.log(error)
-        })
+        }
+        if(found){
+            document.getElementById('errorTag')!.innerHTML = "This drug is already added for this patient"
+        } else {
+            patient = this.patient
+            service.addDrug(name, med).then((response) =>{
+                if(response.status == 200){
+                    this.patBack(name);
+                    var x = store.getters.medication
+                    x.push(med)
+                    store.commit('addMedication', x)
+                }
+            }).catch((error) =>{
+                console.log(error)
+            })
+        }
     }
+                
 
     patBack(name: string){
         service.getPatient(name).then((response) => {
             if(response.status == 200){
                 var pat = response.data
-                router.push({name: 'Patient', params: {pat}})
+                store.commit('addPatient', pat)
+                router.push({name: 'Patient'})
             }
         }).catch((error) =>{
             console.log(error)
@@ -106,6 +124,9 @@ export default class AddDrug extends Vue{
     align-items: center;
     justify-content: center;
     margin: 12px;
+}
+#errorTag{
+    color: red
 }
 
 </style>

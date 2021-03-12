@@ -1,27 +1,49 @@
 import Vue from 'vue';
 import Vuex, { Store } from 'vuex';
+import CreatePersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex);
 
+const datastate = CreatePersistedState({
+  paths: ['patient']
+})
+
 export default new Vuex.Store({
   state: {
-    patientdata: [],
-    medication: [],
+    patient: {
+      first_name: '',
+      last_name: '',
+      age: '',
+      gender: '',
+      medication: [],
+    },
+    interactions: [],
+    activeNode: '',
+    activeInteraction: [],
   },
   mutations: {
-    addPatients(state, patientdata) {
-      state.patientdata = patientdata;
+    addInteractions(state, interactions) {
+      state.interactions = interactions;
     },
-    addMedication(state, medicationData) {
-      state.medication = medicationData;
+    addMedication(state, meds){
+      state.patient.medication = meds
     },
+    addPatient(state, patient){
+      state.patient = patient
+    },
+    setActiveInteraction(state, interaction){
+      state.activeInteraction = interaction
+    },
+    setActiveNode(state, node){
+      state.activeNode = node
+    }
   },
   getters: {
-    patientdata: (state) => state.patientdata,
-    medication: (state) => state.medication,
+    patient: state => state.patient,
+    medication: (state) => state.patient.medication,
+    interactions: (state) => state.interactions,
+    activeNode: (state) => state.activeNode,
+    activeInteraction: (state) => state.activeInteraction,
   },
-  actions: {
-  },
-  modules: {
-  },
+  plugins: [datastate],
 });

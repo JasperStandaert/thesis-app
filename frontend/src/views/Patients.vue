@@ -35,8 +35,6 @@ export default class Patients extends Vue {
     }
 
     public mounted() {
-
-        this.patients = store.state.patientdata;
         service.getPatients().then( (response) => {
             if (response.status == 200) {
                 console.log('Patients found');

@@ -5,7 +5,7 @@
                     <vs-card>
                         <v-card-title>Interaction Graph</v-card-title>
                         <v-card-content>
-                            <graph :patient="name" v-on:childToParent="clickedInteraction" v-on:nodeToParent="clickedNode"/>
+                            <graph/>
                         </v-card-content>
                     </vs-card>
                 </v-col>
@@ -15,7 +15,7 @@
                         Interactions
                         </v-card-title>
                         <v-card-content>
-                            <interaction-info v-for="(inter, i) in interactions" :key="i+1" :drugA="inter[0]" :drugB="inter[1]" :active="activeInteraction" :node='activeNode'/>
+                            <interaction-info v-for="(inter, i) in interactions" :key="i+1" :drugA="inter[0]" :drugB="inter[1]"/>
                         </v-card-content>
                 </vs-card>
             </v-col>
@@ -27,6 +27,7 @@ import {Component, Vue} from 'vue-property-decorator'
 import Graph from '../components/Graph.vue'
 import InteractionInfo from '../components/InteractionInfo.vue'
 import HttpService from '../service'
+import store from '../store'
 
 const service = new HttpService();
 
@@ -35,35 +36,22 @@ const service = new HttpService();
         Graph,
         InteractionInfo,
     },
-    props: ['patient']
 
 })
 export default class Interactions extends Vue{
-    patient = this.$props.patient
-    name = this.patient.first_name + "_" + this.patient.last_name
+    patient = store.getters.patient
     interactions: any = []
-
-    activeInteraction = ['','']
-    activeNode = ""
-
     
     mounted(){
-
-        service.getInteractions(this.name).then((response) =>{
+        var name = store.state.patient.first_name + '_' + store.state.patient.last_name
+        service.getInteractions(name).then((response) =>{
             if(response.status == 200){
                 this.interactions = response.data
+                store.commit('addInteractions', response.data)
             }
         }).catch((error) =>{
             console.log(error)
         })
-    }
-
-    clickedInteraction(interaction){
-        this.activeInteraction = interaction
-    }
-    
-    clickedNode(node){
-        this.activeNode = node
     }
 }
 </script>
